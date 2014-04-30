@@ -1,0 +1,5 @@
+Aby wlaczyc mecz nalezy do pliku data/calendar.csv dopisac mecz.
+Format danych meczu:
+
+dzien, miesiac, rok, tor, typ zawodow (1 -indywindualne na 16 zawodnikow, 0 - dmp), id I druzyny, id II druzyny
+										  , dla indywidualnych po kolei id kazdego zawodnika w zawodach
