@@ -2,6 +2,8 @@
 
 track::track(QString trackName)
 {
+    pgm pg;
+    grip_map = pg.read("tracks/"+name+"/track_p.pgm");
     name = trackName;
     QList <QStringList> temp = CSV.read("tracks/"+name+"/data.csv");
     finishLineA << temp[0][0].toFloat() << temp[0][1].toFloat();

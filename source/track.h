@@ -6,6 +6,7 @@
 #include<QList>
 #include<QVector>
 #include<csv.h>
+#include "pgm.h"
 
 class track
 {
@@ -20,7 +21,7 @@ public:
     QString name;
     QVector< QVector<float> > path1;
     //QList<float> pathVector;
-    //QList< QList <float> > gripMap;
+    QVector< QVector <int> > grip_map;
     QVector<float>  finishLineA, finishLineB;
     QVector<float> startPos1, startPos2, startPos3, startPos4;
     QVector < QVector <float> > start;

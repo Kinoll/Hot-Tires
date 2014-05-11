@@ -113,3 +113,13 @@ void heat::runHeat(QList<heat_rider*> riders, bool graphical)//graphical - czy b
 
     }
 }
+
+QVector< QVector<float> > heat::pathCalculation()
+{
+    QVector<float> position = Track->startPos2;
+    bool finished = false;
+    while (!finished)
+    {
+
+    }
+}

@@ -9,7 +9,8 @@ database::database()
 void database::load()
 {
     QList<QStringList> ridersData;
-
+    pgm p;
+    p.read("tracks/gorzow/track_p.pgm");
     ridersData = CSV.read("data/persons.csv");
     for (int i = 0; i<ridersData.size(); i++)
     {

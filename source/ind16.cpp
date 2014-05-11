@@ -5,6 +5,7 @@ ind16::ind16(QDate date_, track track_, QList<rider *> r)
 {
     standings_m.rider_points.resize(16);
     table_of_heats.heats.resize(20);
+    standings_m.rider_points_sum.resize(16);
     for(int i = 0; i < 20; i++)
     {
         table_of_heats.heats[i].start_positions.resize(4);

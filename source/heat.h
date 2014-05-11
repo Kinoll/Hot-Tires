@@ -18,6 +18,7 @@ public:
     float distance(QList<float> point1, QList<float> point2);
     QList<float> getMagnitude(QList<float> point1, QList<float> point2);
     void runHeat(QList<heat_rider*> riders, bool graphical);
+    QVector< QVector <float> > pathCalculation();
     //QList<heat_rider*> riders;
     //QVector < QList<QStringList> > records;
     //QList<QStringList> tempRec, settings;

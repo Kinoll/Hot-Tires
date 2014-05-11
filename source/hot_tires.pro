@@ -47,7 +47,10 @@ SOURCES += main.cpp\
     database.cpp \
     calendar.cpp \
     event_game.cpp \
-    ind16.cpp
+    ind16.cpp \
+    pgm.cpp \
+    triangle.cpp \
+    vec2d.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -77,7 +80,10 @@ HEADERS  += mainwindow.h \
     database.h \
     calendar.h \
     event_game.h \
-    ind16.h
+    ind16.h \
+    pgm.h \
+    triangle.h \
+    vec2d.h
 
 FORMS    += mainwindow.ui \
     newgame.ui

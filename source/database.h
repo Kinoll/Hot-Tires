@@ -11,6 +11,7 @@
 #include "event_game.h"
 #include "dmp.h"
 #include "ind16.h"
+#include "pgm.h"
 
 class database
 {
