@@ -8,9 +8,11 @@ database::database()
 }
 void database::load()
 {
+    track trk("gorzow");
+    tracks.push_back(trk);
+    heat_rider_new htr;
+    htr.findPathFull();
     QList<QStringList> ridersData;
-    pgm p;
-    p.read("tracks/gorzow/track_p.pgm");
     ridersData = CSV.read("data/persons.csv");
     for (int i = 0; i<ridersData.size(); i++)
     {
@@ -45,6 +47,7 @@ void database::load()
             addMatch(d, t, r, ridersData[i][4].toInt());
         }
     }
+
 
 }
 void database::addMatch(QDate date_, track track_, QList<team*> t, int type)

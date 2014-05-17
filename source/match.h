@@ -4,7 +4,6 @@
 #include <QList>
 #include <QVector>
 #include "rider_container.h"
-//#include "dmp.h"
 #include "heat.h"
 #include "heat_rider.h"
 #include "team.h"
@@ -41,11 +40,9 @@ struct standings
 
 class match : public event_game
 {
-private:
-
-public:
-    heat *h;
+public:  
     match();
+    heat *h;
     heat_table table_of_heats;
     QVector<rider_container> containers;
     standings standings_m;

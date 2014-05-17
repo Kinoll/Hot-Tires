@@ -3,12 +3,15 @@
 track::track(QString trackName)
 {
     pgm pg;
-    grip_map = pg.read("tracks/"+name+"/track_p.pgm");
     name = trackName;
+    grip_map = pg.read("tracks/"+name+"/track_p.pgm");
     QList <QStringList> temp = CSV.read("tracks/"+name+"/data.csv");
     finishLineA << temp[0][0].toFloat() << temp[0][1].toFloat();
     finishLineB << temp[1][0].toFloat() << temp[1][1].toFloat();
+    finish_line_a = vec2d(temp[0][0].toFloat(), temp[0][1].toFloat());
+    finish_line_b = vec2d(temp[1][0].toFloat(), temp[1][1].toFloat());
     startPos1 << temp[2][0].toFloat() << temp[2][1].toFloat();
+    start_pos_2 = vec2d(temp[3][0].toFloat(), temp[3][1].toFloat());
     startPos2 << temp[3][0].toFloat() << temp[3][1].toFloat();
     startPos3 << temp[4][0].toFloat() << temp[4][1].toFloat();
     startPos4 << temp[5][0].toFloat() << temp[5][1].toFloat();

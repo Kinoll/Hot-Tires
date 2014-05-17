@@ -5,21 +5,15 @@
 #include <QList>
 #include <QComboBox>
 #include <QPushButton>
-#include "game.h"
 #include "nation.h"
 #include "nations.h"
 #include "csv_read.h"
-#include "heat.h"
-#include "heat_rider.h"
 #include <iostream>
 #include <QVector>
 #include <QProcess>
 #include "time.h"
-#include "csv.h"
-#include "dmp.h"
-#include "team.h"
 #include "load_save.h"
-#include "match.h"
+#include "database.h"
 //#include "event_game.h"
 #include <iostream>
 using namespace std;

@@ -52,15 +52,7 @@ float heat_rider::cross(QVector<float> A, QVector<float> B, QVector<float> C)
     float cross = (AB[0] * AC[1]) - (AB[1] * AC[0]);
     return cross;
 }
-float heat_rider::truncate(float a, float max)
-/*Obciecie float do wartosci maksymalnej*/
-{
-    if(a>max)
-    {
-        a = max;
-    }
-    return a;
-}
+
 
 float heat_rider::determinant(QVector<float> x, QVector<float> y, QVector<float> pos)
 /*Wyznacznik macierzy 3x2, w celu sprawdzenia czy punkt jest po lewej, czy po prawej stronie odcinka
@@ -116,12 +108,12 @@ void heat_rider::move()
     desiredVelocity[1] = tempVector[1]*maxTorque;
     steering[0] = desiredVelocity[0] - velocity[0];
     steering[1] = desiredVelocity[1] - velocity[1];
-    steering[0] = truncate( steering[0], maxSteering );
-    steering[1] = truncate( steering[1], maxSteering );
+    //steering[0] = truncate( steering[0], maxSteering );
+    //steering[1] = truncate( steering[1], maxSteering );
     steering[0] = steering[0] / mass;
     steering[1] = steering[1] / mass;
-    velocity[0] = truncate(velocity[0]+steering[0], maxTorque);
-    velocity[1] = truncate(velocity[1]+steering[1], maxTorque);
+    //velocity[0] = truncate(velocity[0]+steering[0], maxTorque);
+    //velocity[1] = truncate(velocity[1]+steering[1], maxTorque);
     position[0]+=(velocity[0]); //przemieszczenie
     position[1]+=(velocity[1]); //
     movementRecord.append(position); //zapisanie pozycji zawodnika w danej klatce

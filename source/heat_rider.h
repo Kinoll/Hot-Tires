@@ -1,7 +1,7 @@
 #ifndef HEAT_RIDER_H
 #define HEAT_RIDER_H
 #include <QList>
-#include <math.h>
+#include <cmath>
 #include <QVector>
 #include <QString>
 #include <QStringList>

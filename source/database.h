@@ -6,12 +6,12 @@
 #include "team.h"
 #include "csv.h"
 #include "rider_container.h"
-#include "match.h"
 #include <QDate>
 #include "event_game.h"
 #include "dmp.h"
 #include "ind16.h"
 #include "pgm.h"
+#include "heat_rider_new.h"
 
 class database
 {
@@ -32,6 +32,7 @@ public:
     QList<dmp> dmps;
     QList<ind16> ind16s;
     QList<event_game> events;
+    QVector<track> tracks;
     rider blank_rider;
     QDate date;
 

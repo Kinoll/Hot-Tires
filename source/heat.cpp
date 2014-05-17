@@ -29,6 +29,10 @@ Klasa biegu przystosowana do uzycia w klasie zawodow. Oto przyklad jej uzycia:
 
 #include "heat.h"
 
+heat::heat(track trk)
+{
+    Track = & trk;
+}
 heat::~heat()
 {
     delete Track;
@@ -114,12 +118,3 @@ void heat::runHeat(QList<heat_rider*> riders, bool graphical)//graphical - czy b
     }
 }
 
-QVector< QVector<float> > heat::pathCalculation()
-{
-    QVector<float> position = Track->startPos2;
-    bool finished = false;
-    while (!finished)
-    {
-
-    }
-}

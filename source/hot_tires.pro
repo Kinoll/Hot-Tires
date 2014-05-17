@@ -50,7 +50,10 @@ SOURCES += main.cpp\
     ind16.cpp \
     pgm.cpp \
     triangle.cpp \
-    vec2d.cpp
+    vec2d.cpp \
+    heat_new.cpp \
+    heat_rider_new.cpp \
+    htmath.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -83,7 +86,10 @@ HEADERS  += mainwindow.h \
     ind16.h \
     pgm.h \
     triangle.h \
-    vec2d.h
+    vec2d.h \
+    heat_new.h \
+    heat_rider_new.h \
+    htmath.h
 
 FORMS    += mainwindow.ui \
     newgame.ui

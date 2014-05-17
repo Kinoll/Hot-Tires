@@ -39,7 +39,7 @@ dmp::dmp(QDate date_, track track_, QList<team*> t)
     }
     teams = t;
     date = date_;
-    h = new heat(track_.name);
+    h = new heat(track_);
     event_type = "dmp";
     heat_number = 0;
     containers.resize(2);
