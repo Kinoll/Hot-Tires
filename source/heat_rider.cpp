@@ -23,6 +23,18 @@ heat_rider::heat_rider()
     randX = 0.8;
 
 }
+//////////////
+float heat_rider::truncate(float a, float max)
+/*Obciecie float do wartosci maksymalnej*/
+{
+    if(a>max)
+    {
+        a = max;
+    }
+    return a;
+}
+
+//////////////
 float heat_rider::distance(QVector<float> A, QVector<float> B)
 {
     //float d = sqrt (( (A[0]-B[0]) * (A[0]-B[0]) ) + ( (A[1]-B[1]) * (A[1]-B[1]) )) ; //wzor na odleglosc miedzy punktami, bez pierwiastkowania, dla optymalziacji.
@@ -75,7 +87,7 @@ void heat_rider::move()
 /*Fizyka, AI i ruch zawodnika*/
 {
     /*Liczenie okrazen*/
-    if ( (pathIndex == 11) && wasOnLeft)
+    if (wasOnLeft)
     {
         if ( determinant(finishLineA, finishLineB, position) <= 0)
         {
@@ -84,8 +96,10 @@ void heat_rider::move()
             if (lap == 5) finishedRace = true;
         }
     }
+    if (distance(finishLineB, position) < 3000)
+        wasOnLeft = true;
     /*Wyznaczanie kolejnego celu ze sciezki i dodanie czynnika losowego do predkosci zawodnika*/
-    if (distance(target, position) < 1500) //odleglsoc powinna byc podniesiona do kwadratu
+    if (distance(target, position) < 1000) //odleglsoc powinna byc podniesiona do kwadratu
     {
         maxTorque = baseSpeed + ((float)rand()/((float)RAND_MAX/X));//losowanie bonsuu do predksoci
         maxSteering = baseSteering + ((float)rand()/((float)RAND_MAX/randX));
@@ -95,7 +109,7 @@ void heat_rider::move()
             target[0]+=( rand() % 15 ) + 0;
             target[1]+=( rand() % 15 ) + 0;
             pathIndex++;
-            wasOnLeft = true;
+            //wasOnLeft = true;
         }
         else{pathIndex = 0;}
     }
@@ -108,12 +122,12 @@ void heat_rider::move()
     desiredVelocity[1] = tempVector[1]*maxTorque;
     steering[0] = desiredVelocity[0] - velocity[0];
     steering[1] = desiredVelocity[1] - velocity[1];
-    //steering[0] = truncate( steering[0], maxSteering );
-    //steering[1] = truncate( steering[1], maxSteering );
+    steering[0] = truncate( steering[0], maxSteering );
+    steering[1] = truncate( steering[1], maxSteering );
     steering[0] = steering[0] / mass;
     steering[1] = steering[1] / mass;
-    //velocity[0] = truncate(velocity[0]+steering[0], maxTorque);
-    //velocity[1] = truncate(velocity[1]+steering[1], maxTorque);
+    velocity[0] = truncate(velocity[0]+steering[0], maxTorque);
+    velocity[1] = truncate(velocity[1]+steering[1], maxTorque);
     position[0]+=(velocity[0]); //przemieszczenie
     position[1]+=(velocity[1]); //
     movementRecord.append(position); //zapisanie pozycji zawodnika w danej klatce

@@ -25,7 +25,7 @@ public:
     void clear();
     void findPath();
     void findPathFull();
-
+    void move();
 };
 
 #endif // HEAT_RIDER_NEW_H

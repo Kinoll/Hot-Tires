@@ -44,13 +44,15 @@ void heat_rider_new::findPath()
         temp_pos.rotate(angle);
         tri.rotate(angle);
         tri.move(temp_pos, 100);
-        if ((!(tri.points[0].x >= db.tracks[0].grip_map.size()) && !(tri.points[0].y >= db.tracks[0].grip_map[0].size())) && db.tracks[0].grip_map[tri.points[0].x][tri.points[0].y] != 20)
+        if ((!(tri.points[0].x >= db.tracks[0].grip_map.size()) && !(tri.points[0].y >= db.tracks[0].grip_map[0].size()))
+            && (tri.points[0].x >= 0 && tri.points[0].y >= 0)
+            && (db.tracks[0].grip_map[tri.points[0].x][tri.points[0].y] != 20))
             break;
         else
         {
             tri = old_tri;
             temp_pos = position;
-            angle += 45;
+            angle += 25;
         }
     }
     position = tri.points[0];
@@ -69,7 +71,16 @@ void heat_rider_new::findPathFull()
     for (int i = 0; i < path.size(); i++)
     {
         str_vec << QString::number(path[i].x) << QString::number(path[i].y);
-        path_to_save << str_vec;
+        if (!(i%1))
+        {
+            path_to_save << str_vec;
+            str_vec.clear();
+        }
     }
+    path_to_save.removeLast();
     db.CSV.save("tracks/sciecha.csv", path_to_save);
+}
+void heat_rider_new::move()
+{
+
 }

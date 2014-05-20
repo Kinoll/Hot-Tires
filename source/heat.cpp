@@ -59,7 +59,7 @@ void heat::runHeat(QList<heat_rider*> riders, bool graphical)//graphical - czy b
         riders[n]->riderPath1 = Track->path1;//przekazanie sciezki zawodnikowi
     }
     /*Petla odpowiadajaca za przemieszczanie zawodnikow*/
-    for (int i=0; i<3000; i++)
+    for (int i=0; i<30000; i++)
     {
         for (int n = 0; n < riders.size(); n++)
         {
