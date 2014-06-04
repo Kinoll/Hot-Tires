@@ -4,3 +4,4 @@ htmath::htmath()
 {
 
 }
+htmath ht_math;

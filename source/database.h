@@ -11,7 +11,7 @@
 #include "dmp.h"
 #include "ind16.h"
 #include "pgm.h"
-#include "heat_rider_new.h"
+#include "heat_new.h"
 
 class database
 {

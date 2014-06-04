@@ -66,4 +66,16 @@ void vec2d::rotate(float angle)
     x = old_x * cos(angle) - old_y * sin(angle);
     y = old_x * sin(angle) + old_y * cos(angle);
 }
+void vec2d::fromQVector(QVector<float> qvec)
+{
+    x = qvec[0];
+    y = qvec[1];
+}
+QVector<float> vec2d::toQVector()
+{
+    QVector<float> vec(2);
+    vec[0] = x;
+    vec[1] = y;
+    return vec;
+}
 
