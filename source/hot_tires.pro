@@ -53,7 +53,8 @@ SOURCES += main.cpp\
     vec2d.cpp \
     heat_new.cpp \
     heat_rider_new.cpp \
-    htmath.cpp
+    htmath.cpp \
+    heat_screen.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -89,8 +90,10 @@ HEADERS  += mainwindow.h \
     vec2d.h \
     heat_new.h \
     heat_rider_new.h \
-    htmath.h
+    htmath.h \
+    heat_screen.h
 
 FORMS    += mainwindow.ui \
-    newgame.ui
+    newgame.ui \
+    heat_screen.ui
 

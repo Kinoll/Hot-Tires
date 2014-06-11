@@ -113,7 +113,7 @@ void heat::runHeat(QList<heat_rider*> riders, bool graphical)//graphical - czy b
         if (records.size() >= 4) CSV.save("heat/pos4.csv", records[3]);
         else {QFile::remove("heat/pos4.csv");}
         CSV.save("heat/settings.csv", settings);
-        QProcess::execute("heat/bieg.exe"); //wlaczenie "biegu" 2d
+        QProcess::execute("bieg.exe"); //wlaczenie "biegu" 2d
 
     }
 }

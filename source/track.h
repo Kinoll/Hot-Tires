@@ -28,7 +28,7 @@ public:
     QVector<float>  finishLineA, finishLineB;
     QVector<float> startPos1, startPos2, startPos3, startPos4;
     QVector < QVector <float> > start;
-    vec2d finish_line_a, finish_line_b, start_pos_2;
+    vec2d finish_line_a, finish_line_b, start_pos_2, start_pos_3, start_pos_4, start_pos_1, line_a, line_b;
     ~track(){;}
 
 };

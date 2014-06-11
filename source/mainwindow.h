@@ -16,6 +16,7 @@
 #include "database.h"
 //#include "event_game.h"
 #include <iostream>
+#include "heat_screen.h"
 using namespace std;
 
 namespace Ui {

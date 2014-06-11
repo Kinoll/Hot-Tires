@@ -9,9 +9,9 @@ heat_rider::heat_rider()
     desiredVelocity << 0.0 << 0.0;
     velocity << 0.0 << 0.0;
     steering << 0.0 << 0.0;
-    maxSteering = 1.3;
+    maxSteering = 2;
     baseSteering = 1.3;
-    mass = 27.0;
+    mass = 15.0;
     baseSpeed = 3.2;
     maxTorque = baseSpeed;
     place = 0;

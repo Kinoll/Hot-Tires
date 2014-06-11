@@ -10,7 +10,7 @@ void database::load()
 {
     track trk("gorzow");
     tracks.push_back(trk);
-    heat_rider_new htr;
+    heat_rider_new htr(tracks[0]);
     htr.findPathFull(tracks[0]);
     QList<QStringList> ridersData;
     ridersData = CSV.read("data/persons.csv");
@@ -30,13 +30,18 @@ void database::load()
     }
     //////
     QVector <heat_rider_new*> rnew(4);
-    rnew[0] = new heat_rider_new();
-    rnew[1] = new heat_rider_new();
-    rnew[2] = new heat_rider_new();
-    rnew[3] = new heat_rider_new();
+    rnew[0] = new heat_rider_new(tracks[0]);
+    rnew[1] = new heat_rider_new(tracks[0]);
+    rnew[2] = new heat_rider_new(tracks[0]);
+    rnew[3] = new heat_rider_new(tracks[0]);
+    rnew[0]->helmet_colour="r";
+    rnew[1]->helmet_colour="b";
+    rnew[2]->helmet_colour="w";
+    rnew[3]->helmet_colour="y";
     heat_new het;
 
     het.runHeat(QList<heat_rider_new*>::fromVector(rnew), true, tracks[0]);
+    return;
     //////
     ridersData = CSV.read("data/calendar.csv");
     for (int i = 0; i < ridersData.size(); i++)

@@ -412,7 +412,7 @@ public:
         tab_Mmain->setCurrentIndex(2);
         tab_Manager->setCurrentIndex(0);
         tab_Club->setCurrentIndex(0);
-        tab_match_2->setCurrentIndex(2);
+        tab_match_2->setCurrentIndex(0);
         tab_Game->setCurrentIndex(1);
 
 

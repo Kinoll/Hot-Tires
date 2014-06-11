@@ -10,17 +10,54 @@ void heat_new::runHeat(QList<heat_rider_new *> riders, bool graphical, track & t
     QStringList temp_list, temp_set;
     QList<QStringList> temp_rec, settings;
     QVector < QList<QStringList> > records;
+    vec2d target_first;
+    target_first.fromQVector(trk.path1[1]);
     for (int i = 0; i < riders.size(); i++)
     {
         temp_set << riders[i]->helmet_colour;
 
-        riders[i]->getPath(trk);
+        riders[i]->getPath(trk);     
+        riders[i]->target = target_first;
     }
+    riders[0]->position = trk.start_pos_1;
+    riders[1]->position = trk.start_pos_2;
+    riders[2]->position = trk.start_pos_3;
+    riders[3]->position = trk.start_pos_4;
     for (int i = 0; i < 30000; i++)
     {
         for (int k = 0; k < riders.size(); k++)
         {
-                riders[k]->move(trk);
+            for (int j = 0; j < riders.size(); j++)
+            {
+                if (j!=k && !riders[k]->was_ahead && riders[k]->was_slowed)
+                {
+                    if (ht_math.dist(riders[k]->position, riders[j]->position) < 300)
+                    {
+                        if(riders[k]->position.y-300 > 0)
+                        {
+                            if(riders[k]->position.x < riders[j]->position.x )
+                            {
+                                riders[k]->speed_max-=4;
+                                riders[k]->torque_max-=0.1;
+                                riders[k]->was_slowed = true;
+                                riders[j]->was_ahead = true;
+                            }
+                        }
+                        else
+                        {
+                            if(riders[k]->position.x > riders[j]->position.x)
+                            {
+                                riders[k]->speed_max-=4;
+                                riders[k]->torque_max-=0.1;
+                                riders[k]->was_slowed = true;
+                                riders[j]->was_ahead = true;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            riders[k]->move(trk);
             if (riders[k]->finished_race && !riders[k]->counted)
             {
                 riders[k]->place = place;
@@ -42,6 +79,7 @@ void heat_new::runHeat(QList<heat_rider_new *> riders, bool graphical, track & t
         settings.append(temp_set);
         temp_set.clear();
         temp_set << trk.name;
+        settings.append(temp_set);
         for (int i = 0; i < riders.size(); i++)
         {
             for (int k = 0; k < length_of_heat - 1; k++)
@@ -63,6 +101,6 @@ void heat_new::runHeat(QList<heat_rider_new *> riders, bool graphical, track & t
         if (records.size() >= 4) db.CSV.save("heat/pos4.csv", records[3]);
         else {QFile::remove("heat/pos4.csv");}
         db.CSV.save("heat/settings.csv", settings);
-        QProcess::execute("heat/bieg.exe");
+        QProcess::execute("bieg.exe");
     }
 }

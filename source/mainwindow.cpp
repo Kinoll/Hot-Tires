@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ///////////////////////////////////////////////
     db.load();
 
-
+    return;
     //////////////////////////////////////////////
     srand((unsigned)time(0));
     ui->setupUi(this);

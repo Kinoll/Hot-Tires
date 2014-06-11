@@ -61,6 +61,8 @@ vec2d vec2d::normalized()
 void vec2d::rotate(float angle)
 {
     float old_x, old_y;
+    float pi = 3.14159;
+    angle = (angle * pi)/180.0;
     old_x = x;
     old_y = y;
     x = old_x * cos(angle) - old_y * sin(angle);
