@@ -37,8 +37,8 @@ void heat_new::runHeat(QList<heat_rider_new *> riders, bool graphical, track & t
                         {
                             if(riders[k]->position.x < riders[j]->position.x )
                             {
-                                riders[k]->speed_max-=4;
-                                riders[k]->torque_max-=0.1;
+                                riders[k]->speed_max-=8;
+                                riders[k]->torque_max-=0.5;
                                 riders[k]->was_slowed = true;
                                 riders[j]->was_ahead = true;
                             }
@@ -47,8 +47,8 @@ void heat_new::runHeat(QList<heat_rider_new *> riders, bool graphical, track & t
                         {
                             if(riders[k]->position.x > riders[j]->position.x)
                             {
-                                riders[k]->speed_max-=4;
-                                riders[k]->torque_max-=0.1;
+                                riders[k]->speed_max-=8;
+                                riders[k]->torque_max-=0.5;
                                 riders[k]->was_slowed = true;
                                 riders[j]->was_ahead = true;
                             }

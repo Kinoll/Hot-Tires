@@ -4,10 +4,10 @@
 heat_rider_new::heat_rider_new(track & trk)
 {
     path_index = 1;
-    steering_base = 1.7;
-    steering_max = 2.2;
+    steering_base = 2.5;
+    steering_max = 2.6;
     mass = 30;
-    speed_base = 12;
+    speed_base = 50;
     torque_max = 3;
     speed_max = 3.2;
     place = 0;
@@ -15,7 +15,7 @@ heat_rider_new::heat_rider_new(track & trk)
     was_on_left = false;
     finished_race = false;
     counted = false;
-    X = 1.4;
+    X = 1.9;
     rand_x = 0.8;
     angle = 0;
     position = trk.start_pos_2;
@@ -28,11 +28,11 @@ heat_rider_new::heat_rider_new(track & trk)
 void heat_rider_new::findPath(track & trk)
 {
     htmath ht_math;
-    if (was_on_left && (ht_math.det(trk.finish_line_a, trk.finish_line_b, position) > 0))
+    if (was_on_left && (ht_math.det(trk.finish_line_a, trk.finish_line_b, position) <= 0))
     {
         lap++;
         was_on_left = false;
-        if (lap == 5)
+        if (lap == 2)
             finished_race = true;
     }
     //vec2d temp_pos;
@@ -42,24 +42,24 @@ void heat_rider_new::findPath(track & trk)
     {
         veloc.rotate(-angle);
         vec2d temp_pos = position + veloc * 190.0;
-        vec2d temp_pos2 = position + veloc * 60.0;
+        vec2d temp_pos2 = position + veloc * 90.0;
         //tri.move(temp_pos, 100);
         if ((!(temp_pos.y >= trk.grip_map.size()) && !(temp_pos.x >= trk.grip_map[0].size()))
             && (temp_pos.x >= 0 && temp_pos.y >= 0)
             && (trk.grip_map[temp_pos.y][temp_pos.x] != 20)
             && (trk.grip_map[temp_pos2.y][temp_pos2.x] != 20))
         {
-            position = position + veloc*60;
+            position = position + veloc*90;
             angle =0;
             break;
         }
         else
         {
-            angle = 10;
+            angle = 15;
         }
     }
     //position = tri.points[0];
-    if ((ht_math.det(trk.line_a, trk.line_b, position) <= 0))
+    if (path.size()>12)
         was_on_left = true;
     path << position;
     norm_vel = veloc;
@@ -105,6 +105,11 @@ void heat_rider_new::move(track& trk)
         steering_max = steering_base + ((float)rand()/((float)RAND_MAX/rand_x));
         if (path_index < path.size())
         {
+            if(path_index == path.size()-1)
+            {
+                was_on_left = true;
+                path_index = 0;
+            }
             target = path[path_index];
             target.x += bonus;
             target.y += bonus;
@@ -114,7 +119,6 @@ void heat_rider_new::move(track& trk)
         }
         else
         {
-            was_on_left = true;
             path_index = 1;
         }
     }
@@ -124,9 +128,9 @@ void heat_rider_new::move(track& trk)
     //desired_velocity = temp*torque_max;
 
     if (speed_last<=speed_max)
-        torque_max += 0.007;
+        torque_max += 0.005*(20-trk.grip_map[position.y][position.x])/15;
     else
-        torque_max -= 0.007;
+        torque_max -= 0.005*(20-trk.grip_map[position.y][position.x])/15;
     speed_last = speed_max;
     torque_max = ht_math.trun(torque_max, steering_max);
     steering = ht_math.trun((temp*torque_max - velocity), steering_max)/mass;
