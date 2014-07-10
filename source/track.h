@@ -5,7 +5,7 @@
 #include<QString>
 #include<QList>
 #include<QVector>
-#include<csv.h>
+#include "csv.h"
 #include "pgm.h"
 #include "vec2d.h"
 
@@ -13,7 +13,7 @@ class track
 {
 public:
     csv CSV;
-    track(){};
+    track(){}
     track(QString trackName);
     //void makeFromList(QList<QStringList> trackData);
     //float getGrip(QList<float> riderPos);

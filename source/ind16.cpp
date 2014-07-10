@@ -1,7 +1,7 @@
 #include "ind16.h"
 
 
-ind16::ind16(QDate date_, track track_, QList<rider *> r)
+ind16::ind16(QDate date_, track *track_, QList<rider *> r)
 {
     standings_m.rider_points.resize(16);
     table_of_heats.heats.resize(20);
@@ -24,7 +24,7 @@ ind16::ind16(QDate date_, track track_, QList<rider *> r)
     }
     riders_list = r.toVector();
     date = date_;
-    h = new heat(track_.name);
+    h = new heat();
     event_type = "ind16";
     heat_number = 0;
     containers.resize(1);

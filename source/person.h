@@ -10,10 +10,10 @@ public:
     QString name;
     QString surname;
     int id;
-    int day; //date of birth
-    int month; // month of birth
-    int year; // years of birth
-    int nation;//
+    int day;
+    int month;
+    int year;
+    int nation;
     person();
     void buildFromList(QStringList info);
 };

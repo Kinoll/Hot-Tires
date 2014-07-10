@@ -5,10 +5,11 @@
 #include <QVector>
 #include "rider_container.h"
 #include "heat.h"
-#include "heat_rider.h"
 #include "team.h"
-#include "track.h"
+//#include "track.h"
 #include "event_game.h"
+
+class heat;
 
 struct start_position
 {
@@ -53,7 +54,7 @@ public:
     QString weather; //typ do zmiany po stworzeniu klasy pogody - wskaznik na klase pogody
     QString points_text_representation;
     void mergeContainers(QVector<rider_container> con_vec);
-    QStringList runHeat(QList<rider> &r);
+    QStringList runHeat(QList<rider> &r, track* _track);
     virtual void doSomethingAfterHeat();
     //virtual QString pointsTextRepresentation();
     int findIndex(int rider_id);

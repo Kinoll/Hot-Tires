@@ -1,6 +1,6 @@
 #include "dmp.h"
 
-dmp::dmp(QDate date_, track track_, QList<team*> t)
+dmp::dmp(QDate date_, track *track_, QList<team*> t)
 {
     players_team_participates  = false;
     standings_m.rider_points.resize(16);
@@ -39,7 +39,7 @@ dmp::dmp(QDate date_, track track_, QList<team*> t)
     }
     teams = t;
     date = date_;
-    h = new heat(track_);
+    h = new heat();
     event_type = "dmp";
     heat_number = 0;
     containers.resize(2);

@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "newgame.h"
-#include "game.h"
 #include "nation.h"
 #include "nations.h"
 #include "csv_read.h"
@@ -14,7 +13,6 @@
 #include "csv.h"
 #include "dmp.h"
 #include "team.h"
-#include "load_save.h"
 #include "match.h"
 #include "database.h"
 #include <iostream>
@@ -166,8 +164,8 @@ void MainWindow::on_but_new_clicked()
    ui->tab_Manager->setEnabled(true);
    ui->tab_Mmain->setCurrentIndex(0);
    ui->tab_Manager->setCurrentIndex(0);
-   QString change = gamer.player.name+" "+gamer.player.surname;
-   ui->name_label->setText(change);
+   //QString change = gamer.player.name+" "+gamer.player.surname;
+   //ui->name_label->setText(change);
 }
 
 void MainWindow::on_but_load_clicked()
@@ -237,7 +235,7 @@ void MainWindow::on_pushButton_clicked()
             ui->tab_match_2->setCurrentIndex(2);
         }
 
-        txt = db.dmps[0].runHeat(db.riders);
+        txt = db.dmps[0].runHeat(db.riders, db.dmps[0].h->trck);
         ui->textBrowser_heatDisplay->insertHtml(txt.join(" ")+"<br>");
         ui->textBrowser_matchHeader->setPlainText(db.dmps[0].teams[0]->name+ " " + QString::number(db.dmps[0].standings_m.team_points[15][0])
                 + " : " + QString::number(db.dmps[0].standings_m.team_points[15][1])+ " " + db.dmps[0].teams[1]->name);
@@ -246,7 +244,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (e.event_type == "ind16" && db.ind16s[0].heat_number < 20)
     {
-        txt = db.ind16s[0].runHeat(db.riders);
+        txt = db.ind16s[0].runHeat(db.riders, db.ind16s[0].h->trck);
         ui->textBrowser_heatDisplay->insertHtml(txt.join(" ")+"<br>");
         if (db.ind16s[0].heat_number != 20)
             fillCurrentHeat("ind16", 4);

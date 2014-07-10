@@ -10,7 +10,7 @@ void database::load()
 {
     track trk("gorzow");
     tracks.push_back(trk);
-    heat_rider_new htr(tracks[0]);
+    heat_rider htr(tracks[0]);
     htr.findPathFull(tracks[0]);
     QList<QStringList> ridersData;
     ridersData = CSV.read("data/persons.csv");
@@ -29,19 +29,19 @@ void database::load()
         i++;
     }
     //////
-    QVector <heat_rider_new*> rnew(4);
-    rnew[0] = new heat_rider_new(tracks[0]);
-    rnew[1] = new heat_rider_new(tracks[0]);
-    rnew[2] = new heat_rider_new(tracks[0]);
-    rnew[3] = new heat_rider_new(tracks[0]);
-    rnew[0]->helmet_colour="r";
-    rnew[1]->helmet_colour="b";
-    rnew[2]->helmet_colour="w";
-    rnew[3]->helmet_colour="y";
-    heat_new het;
+//    QVector <heat_rider*> rnew(4);
+//    rnew[0] = new heat_rider(tracks[0]);
+//    rnew[1] = new heat_rider(tracks[0]);
+//    rnew[2] = new heat_rider(tracks[0]);
+//    rnew[3] = new heat_rider(tracks[0]);
+//    rnew[0]->helmet_colour="r";
+//    rnew[1]->helmet_colour="b";
+//    rnew[2]->helmet_colour="w";
+//    rnew[3]->helmet_colour="y";
+//    heat het;
 
-    het.runHeat(QList<heat_rider_new*>::fromVector(rnew), true, tracks[0]);
-    return;
+//    het.runHeat(QList<heat_rider_new*>::fromVector(rnew), true, tracks[0]);
+//    return;
     //////
     ridersData = CSV.read("data/calendar.csv");
     for (int i = 0; i < ridersData.size(); i++)
@@ -69,7 +69,7 @@ void database::addMatch(QDate date_, track track_, QList<team*> t, int type)
 {
     if (type == 0)
     {
-    dmp m(date_, track_, t);
+    dmp m(date_, &track_, t);
     dmps << m;
     }
     addEvent(date_, "dmp");
@@ -78,7 +78,7 @@ void database::addMatch(QDate date_, track track_, QList<rider *> r, int type)
 {
     if (type == 1)
     {
-        ind16 m(date_, track_, r);
+        ind16 m(date_, &track_, r);
         ind16s << m;
     }
     addEvent(date_, "ind16");

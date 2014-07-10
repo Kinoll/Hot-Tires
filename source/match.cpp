@@ -15,18 +15,18 @@ void match::mergeContainers(QVector<rider_container> con_vec)
             riders_list.append(con_vec[i].riders[k]);
 }
 
-QStringList match::runHeat(QList<rider>& r)
+QStringList match::runHeat(QList<rider>& r, track* _track)
 {
     QList<heat_rider*> riders;
     for (int i = 0; i < 4; i++)
     {
         riders << &riders_list[table_of_heats.heats[heat_number].start_positions[i].rider_number]->rider_h;
-        riders[i]->clear();
-        riders[i]->helmetColour = table_of_heats.heats[heat_number].start_positions[i].helmet;
-        riders[i]->startPosition = table_of_heats.heats[heat_number].start_positions[i].number;
+        //riders[i]->clear(); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        riders[i]->helmet_colour = table_of_heats.heats[heat_number].start_positions[i].helmet;
+        riders[i]->start_pos = table_of_heats.heats[heat_number].start_positions[i].number;
     }
 
-    h->runHeat(riders, false);
+    h->runHeat(riders, false, *(_track));
     QStringList txt;
     QString stra;
     for (int i = 0; i < riders.size(); i++)

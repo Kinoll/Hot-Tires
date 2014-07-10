@@ -1,162 +1,151 @@
-/*Klasa reprezentujaca zawodnika, ktory jest uczestnikiem zawodow/biegu*/
-
 #include "heat_rider.h"
 
-heat_rider::heat_rider()
+
+heat_rider::heat_rider(track & trk)
 {
-    pathIndex = 0;
-    position << 0.0 << 0.0;
-    desiredVelocity << 0.0 << 0.0;
-    velocity << 0.0 << 0.0;
-    steering << 0.0 << 0.0;
-    maxSteering = 2;
-    baseSteering = 1.3;
-    mass = 15.0;
-    baseSpeed = 3.2;
-    maxTorque = baseSpeed;
+    path_index = 1;
+    steering_base = 2.5;
+    steering_max = 2.6;
+    mass = 30;
+    speed_base = 50;
+    torque_max = 3;
+    speed_max = 3.2;
     place = 0;
     lap = 1;
-    wasOnLeft = false;
-    finishedRace = false;
+    was_on_left = false;
+    finished_race = false;
     counted = false;
-    X = 0.5;
-    randX = 0.8;
-
+    X = 1.9;
+    rand_x = 0.8;
+    angle = 0;
+    position = trk.start_pos_2;
+    norm_vel = vec2d(1,0);
+    bonus = 0;
+    speed_last = 0;
+    was_ahead = false;
+    was_slowed = false;
 }
-//////////////
-float heat_rider::truncate(float a, float max)
-/*Obciecie float do wartosci maksymalnej*/
+void heat_rider::findPath(track & trk)
 {
-    if(a>max)
+    htmath ht_math;
+    if (was_on_left && (ht_math.det(trk.finish_line_a, trk.finish_line_b, position) <= 0))
     {
-        a = max;
+        lap++;
+        was_on_left = false;
+        if (lap == 2)
+            finished_race = true;
     }
-    return a;
-}
-
-//////////////
-float heat_rider::distance(QVector<float> A, QVector<float> B)
-{
-    //float d = sqrt (( (A[0]-B[0]) * (A[0]-B[0]) ) + ( (A[1]-B[1]) * (A[1]-B[1]) )) ; //wzor na odleglosc miedzy punktami, bez pierwiastkowania, dla optymalziacji.
-    return  ( (A[0]-B[0]) * (A[0]-B[0]) ) + ( (A[1]-B[1]) * (A[1]-B[1]) );
-}
-float heat_rider::dot(QVector<float> A, QVector<float> B, QVector<float> C)
-/*Tzw. dot product*/
-{
-    QVector<float> AB(2);
-    QVector<float> BC(2);
-    AB[0] = B[0]-A[0];
-    AB[1] = B[1]-A[1];
-    BC[0] = C[0]-B[0];
-    BC[1] = C[1]-B[1];
-    float dot = AB[0] * BC[0] + AB[1] * BC[1];
-    return dot;
-}
-float heat_rider::cross(QVector<float> A, QVector<float> B, QVector<float> C)
-/*Cross product*/
-{
-    QVector<float> AB(2);
-    QVector<float> AC(2);
-    AB[0] = B[0]-A[0];
-    AB[1] = B[1]-A[1];
-    AC[0] = C[0]-A[0];
-    AC[1] = C[1]-A[1];
-    float cross = (AB[0] * AC[1]) - (AB[1] * AC[0]);
-    return cross;
-}
-
-
-float heat_rider::determinant(QVector<float> x, QVector<float> y, QVector<float> pos)
-/*Wyznacznik macierzy 3x2, w celu sprawdzenia czy punkt jest po lewej, czy po prawej stronie odcinka
-x1*y2 + x2*y3 + x3*y1 - x1*y3 - x2*y1 - x3*y2*/
-{
-    return (( x[0]*y[1] ) + ( y[0]*pos[1] ) + ( pos[0]*x[1] ) - ( x[0]*pos[1] ) - ( y[0]*x[1] ) - ( pos[0]*y[1] ));
-}
-
-QVector<float> heat_rider::normalize(QVector<float> vector)
-/*Normalizacja wektora*/
-{
-    float d = sqrt(vector[0]*vector[0] + vector[1]*vector[1]);
-    QVector<float> normVector(2);
-    normVector[0] = vector[0]/d;
-    normVector[1] = vector[1]/d;
-    return normVector;
-}
-
-void heat_rider::move()
-/*Fizyka, AI i ruch zawodnika*/
-{
-    /*Liczenie okrazen*/
-    if (wasOnLeft)
+    //vec2d temp_pos;
+    bool started = false;
+    vec2d veloc = norm_vel;
+    while(true)
     {
-        if ( determinant(finishLineA, finishLineB, position) <= 0)
+        veloc.rotate(-angle);
+        vec2d temp_pos = position + veloc * 190.0;
+        vec2d temp_pos2 = position + veloc * 90.0;
+        //tri.move(temp_pos, 100);
+        if ((!(temp_pos.y >= trk.grip_map.size()) && !(temp_pos.x >= trk.grip_map[0].size()))
+            && (temp_pos.x >= 0 && temp_pos.y >= 0)
+            && (trk.grip_map[temp_pos.y][temp_pos.x] != 20)
+            && (trk.grip_map[temp_pos2.y][temp_pos2.x] != 20))
         {
-            lap++;
-            wasOnLeft = false;
-            if (lap == 5) finishedRace = true;
+            position = position + veloc*90;
+            angle =0;
+            break;
+        }
+        else
+        {
+            angle = 15;
         }
     }
-    if (distance(finishLineB, position) < 3000)
-        wasOnLeft = true;
-    /*Wyznaczanie kolejnego celu ze sciezki i dodanie czynnika losowego do predkosci zawodnika*/
-    if (distance(target, position) < 1000) //odleglsoc powinna byc podniesiona do kwadratu
-    {
-        maxTorque = baseSpeed + ((float)rand()/((float)RAND_MAX/X));//losowanie bonsuu do predksoci
-        maxSteering = baseSteering + ((float)rand()/((float)RAND_MAX/randX));
-        if(pathIndex < riderPath1.size())
-        {
-            target = riderPath1[pathIndex]; //nadanie nowego celu zawodnikowi
-            target[0]+=( rand() % 15 ) + 0;
-            target[1]+=( rand() % 15 ) + 0;
-            pathIndex++;
-            //wasOnLeft = true;
-        }
-        else{pathIndex = 0;}
-    }
-    /*Algorytm ruchu. Nie che tego tlumaczyc zbytnio.*/
-    QVector<float> tempVector(2), temp(2);
-    temp[0] = target[0]-position[0];
-    temp[1] = target[1]-position[1];
-    tempVector = normalize(temp);
-    desiredVelocity[0] = tempVector[0]*maxTorque;
-    desiredVelocity[1] = tempVector[1]*maxTorque;
-    steering[0] = desiredVelocity[0] - velocity[0];
-    steering[1] = desiredVelocity[1] - velocity[1];
-    steering[0] = truncate( steering[0], maxSteering );
-    steering[1] = truncate( steering[1], maxSteering );
-    steering[0] = steering[0] / mass;
-    steering[1] = steering[1] / mass;
-    velocity[0] = truncate(velocity[0]+steering[0], maxTorque);
-    velocity[1] = truncate(velocity[1]+steering[1], maxTorque);
-    position[0]+=(velocity[0]); //przemieszczenie
-    position[1]+=(velocity[1]); //
-    movementRecord.append(position); //zapisanie pozycji zawodnika w danej klatce
-    tempVector.clear();
-    temp.clear();
+    //position = tri.points[0];
+    if (path.size()>12)
+        was_on_left = true;
+    path << position;
+    norm_vel = veloc;
 }
-void heat_rider::clear()
+void heat_rider::findPathFull(track &trk)
 {
-    movementRecord.clear();
-    pathIndex = 0;
-    position.clear();
-    position << 0.0 << 0.0;
-    desiredVelocity.clear();
-    desiredVelocity << 0.0 << 0.0;
-    velocity.clear();
-    velocity << 0.0 << 0.0;
-    steering.clear();
-    steering << 0.0 << 0.0;
-    maxSteering = 1.3;
-    baseSteering = 1.3;
-    mass = 27.0;
-    baseSpeed = 3.2;
-    maxTorque = baseSpeed;
-    place = 0;
-    lap = 1;
-    wasOnLeft = false;
-    finishedRace = false;
-    counted = false;
-    X = 0.5;
-    randX = 0.8;
+    position = trk.start_pos_2;
+    //target = position;
+    while (!finished_race)
+    {
+        findPath(trk);
+    }
+    QList<QStringList> path_to_save;
+    QStringList str_vec;
+    for (int i = 0; i < path.size(); i++)
+    {
+        str_vec << QString::number(path[i].x) << QString::number(path[i].y);
+        //if (!(i%1))
+        {
+            path_to_save << str_vec;
+            str_vec.clear();
+        }
+    }
+    path_to_save.removeLast();
+    CSV.save("tracks/gorzow/path.csv", path_to_save);
+    trk = track("gorzow");
 }
+void heat_rider::move(track& trk)
+{
+    moves++;
+    if (was_on_left && (ht_math.det(trk.finish_line_a, trk.finish_line_b, position) <= 0))
+    {
+        lap++;
+        was_on_left = false;
+        if (lap == 5)
+            finished_race = true;
+    }
+    if (moves%130 == 0)
+        bonus = float(( rand() % 40 ) + -20);
+    if (ht_math.dist(target, position) < 1200)
+    {
+        //speed_max = ((speed_base + ((float)rand()/((float)RAND_MAX/X)))*(20-trk.grip_map[position.y][position.x]*0.5))/16;
+        steering_max = steering_base + ((float)rand()/((float)RAND_MAX/rand_x));
+        if (path_index < path.size())
+        {
+            if(path_index == path.size()-1)
+            {
+                was_on_left = true;
+                path_index = 0;
+            }
+            target = path[path_index];
+            target.x += bonus;
+            target.y += bonus;
+            path_index++;
+            was_ahead = false;
+            was_slowed = false;
+        }
+        else
+        {
+            path_index = 1;
+        }
+    }
+    speed_max = speed_base + X*(20-trk.grip_map[position.y][position.x])/8;
+    vec2d temp = target - position;
+    temp = temp.normalized();
+    //desired_velocity = temp*torque_max;
 
+    if (speed_last<=speed_max)
+        torque_max += 0.005*(20-trk.grip_map[position.y][position.x])/15;
+    else
+        torque_max -= 0.005*(20-trk.grip_map[position.y][position.x])/15;
+    speed_last = speed_max;
+    torque_max = ht_math.trun(torque_max, steering_max);
+    steering = ht_math.trun((temp*torque_max - velocity), steering_max)/mass;
+    velocity = ht_math.trun((velocity+steering), torque_max);
+    position = position + velocity;
+    movement_record.append(position.toQVector());
+    //if ((ht_math.dist(trk.finish_line_b, position) < 3000)&& (moves > 250))
+       // was_on_left = true;
+}
+void heat_rider::getPath(track& trk)
+{
+    for (int i = 0; i < trk.path1.size(); i++)
+    {
+        vec2d v;
+        v.fromQVector(trk.path1[i]);
+        path << v;
+    }
+}

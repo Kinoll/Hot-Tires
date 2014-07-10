@@ -1,44 +1,35 @@
 #ifndef HEAT_RIDER_H
 #define HEAT_RIDER_H
 #include <QList>
-#include <cmath>
 #include <QVector>
 #include <QString>
 #include <QStringList>
-#include <QVector2D>
 #include <time.h>
+#include "triangle.h"
+#include "htmath.h"
+#include "track.h"
 
 class heat_rider
 {
 public:
-    heat_rider();
-    QVector<float>position, velocity, target, desiredVelocity, steering;
-    float determinant(QVector<float> x, QVector<float> y, QVector<float> pos);
+    heat_rider(track & trk);
+    csv CSV;
+    vec2d position, velocity, target, desired_velocity, steering, norm_vel;
+    bool was_on_left, finished_race, counted, was_ahead, was_slowed;
+    int place, lap, id, path_index, start_pos, moves;
+    float mass, torque_max, grip, steering_base, steering_max,
+    speed_max, X, rand_x, angle, speed_base, bonus, speed_last;
+    QString helmet_colour;
+    QList<vec2d> path;
+    QVector< QVector <float> > movement_record;
+    triangle tri;
+    void get_speed();
     void clear();
-    bool wasOnLeft, finishedRace, counted;
-    int place, lap, id;
-    float mass;
-    float maxTorque;
-    float grip;
-    float baseSteering;
-    float maxSteering;
-    float baseSpeed;
-    float X;
-    float randX;
-    QString helmetColour;
-    int startPosition;
-    QVector<float> finishLineA, finishLineB;
-    int pathIndex;
-    void getSpeed();
-    QVector< QVector <float> > movementRecord, riderPath1, riderPath2;
-    void move();
-    float truncate(float a, float max);
-    QVector<float> normalize(QVector<float> vector);
-    void calculateVelocity();
-    float distance(QVector<float> A, QVector<float> B);
-    float dot(QVector<float> A, QVector<float> B, QVector<float> C);
-    float cross(QVector<float> A, QVector<float> B, QVector<float> C);
-
+    void findPath(track &trk);
+    void findPathFull(track &trk);
+    void move(track &trk);
+    void getPath(track &trk);
 };
 
 #endif // HEAT_RIDER_H
+

@@ -1,9 +1,5 @@
 #include "rider.h"
 
-rider::rider() :
-    person()
-{
-}
 void rider::makeFromList(QStringList info)
 {
     id = info[0].toInt();
