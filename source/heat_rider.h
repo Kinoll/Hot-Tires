@@ -13,6 +13,7 @@ class heat_rider
 {
 public:
     heat_rider(track & trk);
+    heat_rider ();
     csv CSV;
     vec2d position, velocity, target, desired_velocity, steering, norm_vel;
     bool was_on_left, finished_race, counted, was_ahead, was_slowed;

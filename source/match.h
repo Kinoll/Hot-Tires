@@ -5,7 +5,7 @@
 #include <QVector>
 #include "rider_container.h"
 #include "heat.h"
-#include "team.h"
+//#include "team.h"
 //#include "track.h"
 #include "event_game.h"
 
@@ -59,6 +59,7 @@ public:
     //virtual QString pointsTextRepresentation();
     int findIndex(int rider_id);
     ~match();
+    heat_rider *heat_riderFromRider(rider *&r);
 };
 
 #endif // MATCH_H

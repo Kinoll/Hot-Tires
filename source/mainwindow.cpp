@@ -1,20 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "newgame.h"
-#include "nation.h"
-#include "nations.h"
-#include "csv_read.h"
-#include "heat.h"
-#include "heat_rider.h"
 #include <iostream>
 #include <QVector>
 #include <QProcess>
 #include "time.h"
 #include "csv.h"
-#include "dmp.h"
-#include "team.h"
-#include "match.h"
-#include "database.h"
+
 #include <iostream>
 using namespace std;
 
@@ -28,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ///////////////////////////////////////////////
     db.load();
 
-    return;
+    //return;
     //////////////////////////////////////////////
     srand((unsigned)time(0));
     ui->setupUi(this);
@@ -50,31 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
         for (int k = 0; k < 3; k++)
             buttons_reserve[i][k]->setHidden(true);
 
-
-     /*
-        QStringList rowData, rowOfData;
-            csv_read reader("nations.csv");
-            rowOfData = reader.read();
-            gamer.nations=new nation[rowOfData.size()];
-            gamer.numb_of_nations=rowOfData.size()-1;
-
-          // ui->name_label->setText();
-
-            for (int x = 0; x < rowOfData.size()-1; x++)
-            {
-                rowData = rowOfData.at(x).split(",");
-
-
-                gamer.nations[x].nazwa=rowData[1];
-                gamer.nations[x].icon.addFile("flags/"+gamer.nations[x].nazwa+".bmp" );
-
-
-
-            }
-       */
-    //load_country();
-
-    //!!!! cos tu okomentowalem jak dobrze pamietam -Kinoll
 }
 
 MainWindow::~MainWindow()
@@ -235,7 +202,7 @@ void MainWindow::on_pushButton_clicked()
             ui->tab_match_2->setCurrentIndex(2);
         }
 
-        txt = db.dmps[0].runHeat(db.riders, db.dmps[0].h->trck);
+        txt = db.dmps[0].runHeat(db.riders, &db.tracks[0]); //hardcoded track!!!
         ui->textBrowser_heatDisplay->insertHtml(txt.join(" ")+"<br>");
         ui->textBrowser_matchHeader->setPlainText(db.dmps[0].teams[0]->name+ " " + QString::number(db.dmps[0].standings_m.team_points[15][0])
                 + " : " + QString::number(db.dmps[0].standings_m.team_points[15][1])+ " " + db.dmps[0].teams[1]->name);
@@ -244,7 +211,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (e.event_type == "ind16" && db.ind16s[0].heat_number < 20)
     {
-        txt = db.ind16s[0].runHeat(db.riders, db.ind16s[0].h->trck);
+        txt = db.ind16s[0].runHeat(db.riders, &db.tracks[0]); // HARDCODED TRACK!!!
         ui->textBrowser_heatDisplay->insertHtml(txt.join(" ")+"<br>");
         if (db.ind16s[0].heat_number != 20)
             fillCurrentHeat("ind16", 4);

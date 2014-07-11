@@ -1,18 +1,17 @@
 #ifndef DATABASE_H
 #define DATABASE_H
-#include "manager.h"
-#include "nation.h"
+//#include "manager.h"
+//#include "nation.h"
 //#include "rider.h"
 //#include "team.h"
 #include "csv.h"
 //#include "rider_container.h"
 #include <QDate>
-#include "event_game.h"
+//#include "event_game.h"
 #include "dmp.h"
 #include "ind16.h"
 //#include "pgm.h"
 //#include "heat.h"
-class rider;
 
 class database
 {

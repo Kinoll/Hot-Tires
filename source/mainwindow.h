@@ -5,9 +5,9 @@
 #include <QList>
 #include <QComboBox>
 #include <QPushButton>
-#include "nation.h"
-#include "nations.h"
-#include "csv_read.h"
+//#include "nation.h"
+//#include "nations.h"
+//#include "csv_read.h"
 #include <iostream>
 #include <QVector>
 #include <QProcess>

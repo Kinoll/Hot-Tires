@@ -1,6 +1,7 @@
 #ifndef DMP_H
 #define DMP_H
 #include "match.h"
+#include "team.h"
 
 class dmp : public match
 {

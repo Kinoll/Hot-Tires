@@ -25,6 +25,30 @@ heat_rider::heat_rider(track & trk)
     was_ahead = false;
     was_slowed = false;
 }
+heat_rider::heat_rider()
+{
+    path_index = 1;
+    steering_base = 2.5;
+    steering_max = 2.6;
+    mass = 30;
+    speed_base = 50;
+    torque_max = 3;
+    speed_max = 3.2;
+    place = 0;
+    lap = 1;
+    was_on_left = false;
+    finished_race = false;
+    counted = false;
+    X = 1.9;
+    rand_x = 0.8;
+    angle = 0;
+    norm_vel = vec2d(1,0);
+    bonus = 0;
+    speed_last = 0;
+    was_ahead = false;
+    was_slowed = false;
+}
+
 void heat_rider::findPath(track & trk)
 {
     htmath ht_math;
@@ -84,7 +108,7 @@ void heat_rider::findPathFull(track &trk)
         }
     }
     path_to_save.removeLast();
-    CSV.save("tracks/gorzow/path.csv", path_to_save);
+    CSV.save("tracks/gorzow/path.csv", path_to_save);      //delete hardcoding
     trk = track("gorzow");
 }
 void heat_rider::move(track& trk)
