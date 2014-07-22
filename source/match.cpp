@@ -18,6 +18,7 @@ void match::mergeContainers(QVector<rider_container> con_vec)
 heat_rider* match::heat_riderFromRider(rider *&r)
 {
     heat_rider* h = new heat_rider;    // TODO
+    h->id = r->id;
     return h;
 }
 
@@ -59,3 +60,4 @@ void match::doSomethingAfterHeat()
 {
 
 }
+

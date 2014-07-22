@@ -35,6 +35,7 @@ public:
     QVector<track> tracks;
     rider blank_rider;
     QDate date;
+    int players_team_id;
 
 };
 extern database db;

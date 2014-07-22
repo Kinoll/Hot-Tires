@@ -17,7 +17,6 @@ public:
     QList<team*> teams;
     int players_team;
     bool players_team_participates;
-    QList<int> positionInNominatedHeat(int team_number, int heat_num);
     ~dmp(){}
 };
 

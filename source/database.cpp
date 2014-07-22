@@ -5,6 +5,8 @@ database::database()
     date.setDate(2014,4,6);
 
     is_home = true;
+
+    players_team_id = 0; //To be changed
 }
 void database::load()
 {
@@ -28,21 +30,6 @@ void database::load()
         teams.append(t);
         i++;
     }
-    //////
-//    QVector <heat_rider*> rnew(4);
-//    rnew[0] = new heat_rider(tracks[0]);
-//    rnew[1] = new heat_rider(tracks[0]);
-//    rnew[2] = new heat_rider(tracks[0]);
-//    rnew[3] = new heat_rider(tracks[0]);
-//    rnew[0]->helmet_colour="r";
-//    rnew[1]->helmet_colour="b";
-//    rnew[2]->helmet_colour="w";
-//    rnew[3]->helmet_colour="y";
-//    heat het;
-
-//    het.runHeat(QList<heat_rider_new*>::fromVector(rnew), true, tracks[0]);
-//    return;
-    //////
     ridersData = CSV.read("data/calendar.csv");
     for (int i = 0; i < ridersData.size(); i++)
     {

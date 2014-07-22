@@ -173,3 +173,27 @@ void heat_rider::getPath(track& trk)
         path << v;
     }
 }
+void heat_rider::clear()
+{
+    path_index = 1;
+    steering_base = 2.5;
+    steering_max = 2.6;
+    mass = 30;
+    speed_base = 50;
+    torque_max = 3;
+    speed_max = 3.2;
+    place = 0;
+    lap = 1;
+    was_on_left = false;
+    finished_race = false;
+    counted = false;
+    X = 1.9;
+    rand_x = 0.8;
+    angle = 0;
+   // position = trk.start_pos_2;
+    norm_vel = vec2d(1,0);
+    bonus = 0;
+    speed_last = 0;
+    was_ahead = false;
+    was_slowed = false;
+}

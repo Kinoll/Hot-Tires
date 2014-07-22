@@ -213,7 +213,7 @@ QList<int> dmp::nominatedHeatsRiders(int team_number)
     r_numbers.resize(riders_to_15);
     return r_numbers.toList();
 }
-QList<int> dmp::positionInNominatedHeat(int team_number, int heat_num)
+QList<int> match::positionInNominatedHeat(int team_number, int heat_num)
 {
     int first, last;
     if (team_number == 0)
@@ -233,4 +233,41 @@ QList<int> dmp::positionInNominatedHeat(int team_number, int heat_num)
             positions << i;
     }
     return positions;
+}
+QVector<int> match::aiChooseRidersNominatedHead(int team_num)
+{
+    QList<int> ids;
+    QList<int> points;
+    for(int i = 0; i < containers[team_num].riders.size(); i++)
+    {
+        ids << containers[team_num].riders[i]->id;
+        points << standings_m.rider_points_sum[findIndex(ids[i])];
+    }
+    for (int i = 0; i < points.size(); i++)
+    {
+        for (int k = 0; k < points.size(); k++)
+        {
+            if (points[i] > points[k])
+            {
+                swap(points[i], points[k]);
+                swap(ids[i], ids[k]);
+            }
+        }
+    }
+
+    QList<int> pos_14 = positionInNominatedHeat(team_num, 13);
+    QList<int> pos_15 = positionInNominatedHeat(team_num, 14);
+    table_of_heats.heats[13].start_positions[pos_14[0]].rider_number = ids[0];
+    table_of_heats.heats[13].start_positions[pos_14[1]].rider_number = ids[1];
+    table_of_heats.heats[14].start_positions[pos_15[0]].rider_number = ids[2];
+    table_of_heats.heats[14].start_positions[pos_15[1]].rider_number = ids[3];
+
+    return ids.toVector();
+}
+int match::getPlayerTeamNum(int id)
+{
+    for (int  i = 0; i < teams.size(); i++)
+        if (id == teams[i]->id)
+            return i;
+    return -1;
 }

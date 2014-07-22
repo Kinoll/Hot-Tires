@@ -58,8 +58,32 @@ void MainWindow::fillDmp()
         combos_a[i]->insertItems(0, fill2);
         combos_h[i]->insertItems(0, fill1);
     }
+
     combos_a[7]->setHidden(true);
     combos_h[7]->setHidden(true);
+
+    for (int i = 0; i < db.dmps[0].teams.size(); i++)
+    {
+        if(db.dmps[0].teams[i]->id != db.players_team_id)
+        {
+            if (i == 0)
+            {
+                for (int k = 0; k < combos_a.size() - 1; k++)
+                {
+                    combos_a[k]->setCurrentIndex(k);
+                    combos_a[k]->setDisabled(true);
+                }
+            }
+            else
+            {
+                for (int k = 0; k < combos_a.size() - 1; k++)
+                {
+                    combos_h[k]->setCurrentIndex(k);
+                    combos_h[k]->setDisabled(true);
+                }
+            }
+        }
+    }
 }
 void MainWindow::fillCurrentHeat(QString type, int players_team = 4)
 {
@@ -195,11 +219,20 @@ void MainWindow::on_pushButton_clicked()
     {
         if (db.dmps[0].heat_number == 12)
         {
-            ui->comb_h14_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(1));
-            ui->comb_h14_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(1));
-            ui->comb_h15_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(0))); //zamienic "0" na druzyne gracza
-            ui->comb_h15_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(0)));
-            ui->tab_match_2->setCurrentIndex(2);
+            if (db.dmps[0].getPlayerTeamNum(db.players_team_id) == -1)
+            {
+                db.dmps[0].aiChooseRidersNominatedHead(0);
+                db.dmps[0].aiChooseRidersNominatedHead(1);
+            }
+            else
+            {
+                db.dmps[0].aiChooseRidersNominatedHead(!db.dmps[0].getPlayerTeamNum(db.players_team_id));
+                ui->comb_h14_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].getPlayerTeamNum(db.players_team_id)));
+                ui->comb_h14_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].getPlayerTeamNum(db.players_team_id)));
+                ui->comb_h15_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(db.dmps[0].getPlayerTeamNum(db.players_team_id)))); //zamienic "0" na druzyne gracza
+                ui->comb_h15_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(db.dmps[0].getPlayerTeamNum(db.players_team_id))));
+                ui->tab_match_2->setCurrentIndex(2);
+            }
         }
 
         txt = db.dmps[0].runHeat(db.riders, &db.tracks[0]); //hardcoded track!!!
@@ -512,10 +545,10 @@ void MainWindow::on_pushButton_accept_nom_clicked()
         database* datb = &db;
         QList<int> pos_14 = db.dmps[0].positionInNominatedHeat(0, 13);
         QList<int> pos_15 = db.dmps[0].positionInNominatedHeat(0, 14);
-        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[0]].rider_number = r_nums[0];
-        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[1]].rider_number = r_nums[1];
-        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[0]].rider_number = r_nums[2];
-        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[1]].rider_number = r_nums[3];
+        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[0]].rider_number = r_nums[3];
+        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[1]].rider_number = r_nums[2];
+        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[0]].rider_number = r_nums[1];
+        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[1]].rider_number = r_nums[0];
         ui->pushButton_accept_nom->setDisabled(true);
     }
 }
