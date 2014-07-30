@@ -4,10 +4,8 @@
 #include <iostream>
 #include <QVector>
 #include <QProcess>
-#include "time.h"
 #include "csv.h"
 
-#include <iostream>
 using namespace std;
 
 
