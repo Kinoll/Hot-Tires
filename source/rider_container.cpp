@@ -23,5 +23,5 @@ void rider_container::add(rider* r)
 bool rider_container::check(QString type, QDate date)
 {
     if (type == "dmp")
-        return ((date.year()<=riders[6]->year+21)&&(date.year()<=riders[5]->year+21)&&is_correct);
+        return ((date.year()<=riders[6]->birth_date.year()+21)&&(date.year()<=riders[5]->birth_date.year()+21)&&is_correct);
 }

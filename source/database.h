@@ -1,16 +1,17 @@
 #ifndef DATABASE_H
 #define DATABASE_H
-#include "manager.h"
-#include "nation.h"
-#include "rider.h"
-#include "team.h"
+//#include "manager.h"
+//#include "nation.h"
+//#include "rider.h"
+//#include "team.h"
 #include "csv.h"
-#include "rider_container.h"
-#include "match.h"
+//#include "rider_container.h"
 #include <QDate>
-#include "event_game.h"
+//#include "event_game.h"
 #include "dmp.h"
 #include "ind16.h"
+//#include "pgm.h"
+//#include "heat.h"
 
 class database
 {
@@ -31,8 +32,10 @@ public:
     QList<dmp> dmps;
     QList<ind16> ind16s;
     QList<event_game> events;
+    QVector<track> tracks;
     rider blank_rider;
     QDate date;
+    int players_team_id;
 
 };
 extern database db;

@@ -5,11 +5,16 @@ database::database()
     date.setDate(2014,4,6);
 
     is_home = true;
+
+    players_team_id = 0; //To be changed
 }
 void database::load()
 {
+    track trk("gorzow");
+    tracks.push_back(trk);
+    heat_rider htr(tracks[0]);
+    htr.findPathFull(tracks[0]);
     QList<QStringList> ridersData;
-
     ridersData = CSV.read("data/persons.csv");
     for (int i = 0; i<ridersData.size(); i++)
     {
@@ -45,12 +50,13 @@ void database::load()
         }
     }
 
+
 }
 void database::addMatch(QDate date_, track track_, QList<team*> t, int type)
 {
     if (type == 0)
     {
-    dmp m(date_, track_, t);
+    dmp m(date_, &track_, t);
     dmps << m;
     }
     addEvent(date_, "dmp");
@@ -59,7 +65,7 @@ void database::addMatch(QDate date_, track track_, QList<rider *> r, int type)
 {
     if (type == 1)
     {
-        ind16 m(date_, track_, r);
+        ind16 m(date_, &track_, r);
         ind16s << m;
     }
     addEvent(date_, "ind16");

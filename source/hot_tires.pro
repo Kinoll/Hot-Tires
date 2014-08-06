@@ -28,7 +28,6 @@ SOURCES += main.cpp\
     rider.cpp \
     manager.cpp \
     player.cpp \
-    game.cpp \
     gamescreen_view.cpp \
     controller.cpp \
     newgame.cpp \
@@ -36,18 +35,22 @@ SOURCES += main.cpp\
     nation.cpp \
     track.cpp \
     heat.cpp \
-    heat_rider.cpp \
     csv.cpp \
     match.cpp \
     dmp.cpp \
     rider_container.cpp \
     team.cpp \
-    load_save.cpp \
     html.cpp \
     database.cpp \
     calendar.cpp \
     event_game.cpp \
-    ind16.cpp
+    ind16.cpp \
+    pgm.cpp \
+    triangle.cpp \
+    vec2d.cpp \
+    htmath.cpp \
+    heat_screen.cpp \
+    heat_rider.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -58,7 +61,6 @@ HEADERS  += mainwindow.h \
     rider.h \
     manager.h \
     player.h \
-    game.h \
     gamescreen_view.h \
     controller.h \
     newgame.h \
@@ -66,19 +68,24 @@ HEADERS  += mainwindow.h \
     nation.h \
     track.h \
     heat.h \
-    heat_rider.h \
     csv.h \
     match.h \
     dmp.h \
     rider_container.h \
     team.h \
-    load_save.h \
     html.h \
     database.h \
     calendar.h \
     event_game.h \
-    ind16.h
+    ind16.h \
+    pgm.h \
+    triangle.h \
+    vec2d.h \
+    htmath.h \
+    heat_screen.h \
+    heat_rider.h
 
 FORMS    += mainwindow.ui \
-    newgame.ui
+    newgame.ui \
+    heat_screen.ui
 

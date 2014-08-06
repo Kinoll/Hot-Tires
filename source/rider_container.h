@@ -4,7 +4,7 @@
 #include <QString>
 #include <QDate>
 #include "rider.h"
-//#include "database.h"
+#include "heat_rider.h"
 
 class rider_container
 {

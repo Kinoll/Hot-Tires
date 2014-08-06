@@ -2,11 +2,23 @@
 
 track::track(QString trackName)
 {
+    pgm pg;
     name = trackName;
+    grip_map = pg.read("tracks/"+name+"/track_p.pgm");
     QList <QStringList> temp = CSV.read("tracks/"+name+"/data.csv");
     finishLineA << temp[0][0].toFloat() << temp[0][1].toFloat();
     finishLineB << temp[1][0].toFloat() << temp[1][1].toFloat();
+    finish_line_a = vec2d(temp[0][0].toFloat(), temp[0][1].toFloat());
+    finish_line_b = vec2d(temp[1][0].toFloat(), temp[1][1].toFloat());
+    line_a = finish_line_a;
+    line_a.x -= 100;
+    line_b = finish_line_b;
+    line_b.x -= 100;
     startPos1 << temp[2][0].toFloat() << temp[2][1].toFloat();
+    start_pos_1 = vec2d(temp[3][0].toFloat(), temp[2][1].toFloat());
+    start_pos_2 = vec2d(temp[3][0].toFloat(), temp[3][1].toFloat());
+    start_pos_3 = vec2d(temp[3][0].toFloat(), temp[4][1].toFloat());
+    start_pos_4 = vec2d(temp[3][0].toFloat(), temp[5][1].toFloat());
     startPos2 << temp[3][0].toFloat() << temp[3][1].toFloat();
     startPos3 << temp[4][0].toFloat() << temp[4][1].toFloat();
     startPos4 << temp[5][0].toFloat() << temp[5][1].toFloat();
@@ -17,7 +29,7 @@ track::track(QString trackName)
     QList <float> temp1;
     QStringList temp2;
     temp.clear();
-    while(path.isEmpty()==false)
+    while(path.size() > 1)
     {
         temp2 = path.takeFirst();
         temp1 << temp2[0].toFloat();

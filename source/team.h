@@ -14,6 +14,8 @@ public:
     QStringList getRidersTextRepresenatation();
     QString city, name;
     int id;
+    QVector<int> coaches, couches_youth,
+    physical_coaches, psyche_coaches, talent_seekers; /* If you want to read it from file, you have to add it to .csv file */
     rider *getRiderByName(QString name);
 };
 

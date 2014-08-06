@@ -1,23 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "newgame.h"
-#include "game.h"
-#include "nation.h"
-#include "nations.h"
-#include "csv_read.h"
-#include "heat.h"
-#include "heat_rider.h"
 #include <iostream>
 #include <QVector>
 #include <QProcess>
-#include "time.h"
 #include "csv.h"
-#include "dmp.h"
-#include "team.h"
-#include "load_save.h"
-#include "match.h"
-#include "database.h"
-#include <iostream>
+
 using namespace std;
 
 
@@ -30,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ///////////////////////////////////////////////
     db.load();
 
-
+    //return;
     //////////////////////////////////////////////
     srand((unsigned)time(0));
     ui->setupUi(this);
@@ -52,31 +40,6 @@ MainWindow::MainWindow(QWidget *parent) :
         for (int k = 0; k < 3; k++)
             buttons_reserve[i][k]->setHidden(true);
 
-
-     /*
-        QStringList rowData, rowOfData;
-            csv_read reader("nations.csv");
-            rowOfData = reader.read();
-            gamer.nations=new nation[rowOfData.size()];
-            gamer.numb_of_nations=rowOfData.size()-1;
-
-          // ui->name_label->setText();
-
-            for (int x = 0; x < rowOfData.size()-1; x++)
-            {
-                rowData = rowOfData.at(x).split(",");
-
-
-                gamer.nations[x].nazwa=rowData[1];
-                gamer.nations[x].icon.addFile("flags/"+gamer.nations[x].nazwa+".bmp" );
-
-
-
-            }
-       */
-    //load_country();
-
-    //!!!! cos tu okomentowalem jak dobrze pamietam -Kinoll
 }
 
 MainWindow::~MainWindow()
@@ -93,8 +56,32 @@ void MainWindow::fillDmp()
         combos_a[i]->insertItems(0, fill2);
         combos_h[i]->insertItems(0, fill1);
     }
+
     combos_a[7]->setHidden(true);
     combos_h[7]->setHidden(true);
+
+    for (int i = 0; i < db.dmps[0].teams.size(); i++)
+    {
+        if(db.dmps[0].teams[i]->id != db.players_team_id)
+        {
+            if (i == 0)
+            {
+                for (int k = 0; k < combos_a.size() - 1; k++)
+                {
+                    combos_a[k]->setCurrentIndex(k);
+                    combos_a[k]->setDisabled(true);
+                }
+            }
+            else
+            {
+                for (int k = 0; k < combos_a.size() - 1; k++)
+                {
+                    combos_h[k]->setCurrentIndex(k);
+                    combos_h[k]->setDisabled(true);
+                }
+            }
+        }
+    }
 }
 void MainWindow::fillCurrentHeat(QString type, int players_team = 4)
 {
@@ -166,8 +153,8 @@ void MainWindow::on_but_new_clicked()
    ui->tab_Manager->setEnabled(true);
    ui->tab_Mmain->setCurrentIndex(0);
    ui->tab_Manager->setCurrentIndex(0);
-   QString change = gamer.player.name+" "+gamer.player.surname;
-   ui->name_label->setText(change);
+   //QString change = gamer.player.name+" "+gamer.player.surname;
+   //ui->name_label->setText(change);
 }
 
 void MainWindow::on_but_load_clicked()
@@ -230,14 +217,23 @@ void MainWindow::on_pushButton_clicked()
     {
         if (db.dmps[0].heat_number == 12)
         {
-            ui->comb_h14_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(1));
-            ui->comb_h14_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(1));
-            ui->comb_h15_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(0))); //zamienic "0" na druzyne gracza
-            ui->comb_h15_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(0)));
-            ui->tab_match_2->setCurrentIndex(2);
+            if (db.dmps[0].getPlayerTeamNum(db.players_team_id) == -1)
+            {
+                db.dmps[0].aiChooseRidersNominatedHead(0);
+                db.dmps[0].aiChooseRidersNominatedHead(1);
+            }
+            else
+            {
+                db.dmps[0].aiChooseRidersNominatedHead(!db.dmps[0].getPlayerTeamNum(db.players_team_id));
+                ui->comb_h14_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].getPlayerTeamNum(db.players_team_id)));
+                ui->comb_h14_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].getPlayerTeamNum(db.players_team_id)));
+                ui->comb_h15_1->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(db.dmps[0].getPlayerTeamNum(db.players_team_id)))); //zamienic "0" na druzyne gracza
+                ui->comb_h15_2->insertItems(0, db.dmps[0].getRidersTextRepresentation(db.dmps[0].nominatedHeatsRiders(db.dmps[0].getPlayerTeamNum(db.players_team_id))));
+                ui->tab_match_2->setCurrentIndex(2);
+            }
         }
 
-        txt = db.dmps[0].runHeat(db.riders);
+        txt = db.dmps[0].runHeat(db.riders, &db.tracks[0]); //hardcoded track!!!
         ui->textBrowser_heatDisplay->insertHtml(txt.join(" ")+"<br>");
         ui->textBrowser_matchHeader->setPlainText(db.dmps[0].teams[0]->name+ " " + QString::number(db.dmps[0].standings_m.team_points[15][0])
                 + " : " + QString::number(db.dmps[0].standings_m.team_points[15][1])+ " " + db.dmps[0].teams[1]->name);
@@ -246,7 +242,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (e.event_type == "ind16" && db.ind16s[0].heat_number < 20)
     {
-        txt = db.ind16s[0].runHeat(db.riders);
+        txt = db.ind16s[0].runHeat(db.riders, &db.tracks[0]); // HARDCODED TRACK!!!
         ui->textBrowser_heatDisplay->insertHtml(txt.join(" ")+"<br>");
         if (db.ind16s[0].heat_number != 20)
             fillCurrentHeat("ind16", 4);
@@ -547,10 +543,10 @@ void MainWindow::on_pushButton_accept_nom_clicked()
         database* datb = &db;
         QList<int> pos_14 = db.dmps[0].positionInNominatedHeat(0, 13);
         QList<int> pos_15 = db.dmps[0].positionInNominatedHeat(0, 14);
-        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[0]].rider_number = r_nums[0];
-        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[1]].rider_number = r_nums[1];
-        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[0]].rider_number = r_nums[2];
-        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[1]].rider_number = r_nums[3];
+        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[0]].rider_number = r_nums[3];
+        db.dmps[0].table_of_heats.heats[13].start_positions[pos_14[1]].rider_number = r_nums[2];
+        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[0]].rider_number = r_nums[1];
+        db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[1]].rider_number = r_nums[0];
         ui->pushButton_accept_nom->setDisabled(true);
     }
 }
