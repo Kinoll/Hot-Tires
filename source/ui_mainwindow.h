@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.1
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -409,11 +409,11 @@ public:
 
         retranslateUi(MainWindow);
 
-        tab_Mmain->setCurrentIndex(2);
+        tab_Mmain->setCurrentIndex(3);
         tab_Manager->setCurrentIndex(0);
         tab_Club->setCurrentIndex(0);
         tab_match_2->setCurrentIndex(0);
-        tab_Game->setCurrentIndex(1);
+        tab_Game->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

@@ -153,6 +153,11 @@ void MainWindow::on_but_new_clicked()
    ui->tab_Manager->setEnabled(true);
    ui->tab_Mmain->setCurrentIndex(0);
    ui->tab_Manager->setCurrentIndex(0);
+
+   ui->tab_Club->setEnabled(true);
+   ui->tab_CClub->setEnabled(true);
+    ui->tab_training->setEnabled(true);
+
    //QString change = gamer.player.name+" "+gamer.player.surname;
    //ui->name_label->setText(change);
 }

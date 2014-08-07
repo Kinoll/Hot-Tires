@@ -19,3 +19,14 @@
 *.exe
 *.out
 *.app
+source/hot_tires.pro.user.861e6a0
+source/object_script.hot_tires.Release
+source/Makefile
+source/Makefile.Debug
+source/Makefile.Release
+source/object_script.hot_tires.Debug
+source/debug/moc_draw_run.cpp
+source/debug/moc_heat_screen.cpp
+source/debug/moc_mainwindow.cpp
+source/debug/moc_newgame.cpp
+source/mainwindow.ui.autosave
