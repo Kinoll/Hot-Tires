@@ -54,3 +54,10 @@ void person::makeFromList(QStringList info)
     is_manager = info[38].toShort();
     is_mechanic = info[39].toShort();
 }
+
+
+void person::perform_training()
+{
+    //
+//   training_days[this->tr_day[today]].perform();
+}

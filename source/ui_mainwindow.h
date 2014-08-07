@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -43,6 +44,8 @@ public:
     QWidget *tab_calendar;
     QWidget *tab_team;
     QWidget *tab_training;
+    QComboBox *comboBox_riderToTrain;
+    QLabel *label_riderToTrain;
     QWidget *tab_workers;
     QWidget *tab_management;
     QWidget *tab_finances;
@@ -166,6 +169,12 @@ public:
         tab_Club->addTab(tab_team, QString());
         tab_training = new QWidget();
         tab_training->setObjectName(QStringLiteral("tab_training"));
+        comboBox_riderToTrain = new QComboBox(tab_training);
+        comboBox_riderToTrain->setObjectName(QStringLiteral("comboBox_riderToTrain"));
+        comboBox_riderToTrain->setGeometry(QRect(120, 10, 121, 22));
+        label_riderToTrain = new QLabel(tab_training);
+        label_riderToTrain->setObjectName(QStringLiteral("label_riderToTrain"));
+        label_riderToTrain->setGeometry(QRect(10, 10, 91, 20));
         tab_Club->addTab(tab_training, QString());
         tab_workers = new QWidget();
         tab_workers->setObjectName(QStringLiteral("tab_workers"));
@@ -409,9 +418,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        tab_Mmain->setCurrentIndex(3);
+        tab_Mmain->setCurrentIndex(1);
         tab_Manager->setCurrentIndex(0);
-        tab_Club->setCurrentIndex(0);
+        tab_Club->setCurrentIndex(2);
         tab_match_2->setCurrentIndex(0);
         tab_Game->setCurrentIndex(0);
 
@@ -430,6 +439,7 @@ public:
         tab_Mmain->setTabText(tab_Mmain->indexOf(tab_MManager), QApplication::translate("MainWindow", "Manager", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_calendar), QApplication::translate("MainWindow", "Terminarz", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_team), QApplication::translate("MainWindow", "Kadra", 0));
+        label_riderToTrain->setText(QApplication::translate("MainWindow", "Wybierz zawodnika:", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_training), QApplication::translate("MainWindow", "Trening", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_workers), QApplication::translate("MainWindow", "Sztab", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_management), QApplication::translate("MainWindow", "Zarzad", 0));

@@ -50,7 +50,10 @@ SOURCES += main.cpp\
     vec2d.cpp \
     htmath.cpp \
     heat_screen.cpp \
-    heat_rider.cpp
+    heat_rider.cpp \
+    training_day.cpp \
+    training_scheme.cpp \
+    training.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -83,7 +86,10 @@ HEADERS  += mainwindow.h \
     vec2d.h \
     htmath.h \
     heat_screen.h \
-    heat_rider.h
+    heat_rider.h \
+    training_day.h \
+    training_scheme.h \
+    training.h
 
 FORMS    += mainwindow.ui \
     newgame.ui \

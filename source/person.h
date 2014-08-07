@@ -42,6 +42,13 @@ public:
     short injury_length; /* 0 means no injury */
     qint8 technical_skills;
 
+
+    //training
+    QVector<qint16> tr_day;
+    qint16 tr_today;
+    void perform_training();
+
+
     /* Coache's skills */
     qint8 mental_training;
     qint8 discipline;

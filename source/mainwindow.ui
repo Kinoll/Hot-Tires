@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_MManager">
      <property name="enabled">
@@ -95,7 +95,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_calendar">
        <attribute name="title">
@@ -111,6 +111,29 @@
        <attribute name="title">
         <string>Trening</string>
        </attribute>
+       <widget class="QComboBox" name="comboBox_riderToTrain">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_riderToTrain">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Wybierz zawodnika:</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_workers">
        <attribute name="title">
