@@ -24,6 +24,7 @@ private:
 public:
     training_day();
     void perform();
+    void makeFromList(QStringList info);
 };
 
 #endif // TRAININGDAYINCLUB_H

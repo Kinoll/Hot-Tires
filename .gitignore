@@ -30,3 +30,4 @@ source/debug/moc_heat_screen.cpp
 source/debug/moc_mainwindow.cpp
 source/debug/moc_newgame.cpp
 source/mainwindow.ui.autosave
+*.autosave

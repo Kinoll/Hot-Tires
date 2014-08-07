@@ -51,6 +51,23 @@ void database::load()
     }
 
 
+     QList<QStringList> trainingDayFile = CSV.read("data/training_day.csv");
+    for (int i = 0; i<trainingDayFile.size(); i++)
+    {
+        training_day td;
+        td.makeFromList(trainingDayFile[i]);
+        training_days.append(td);
+    }
+
+    QList<QStringList> trainingSchemeFile = CSV.read("data/training_scheme.csv");
+
+    for (int i = 0; i<trainingSchemeFile.size(); i++)
+   {
+       training_scheme ts;
+       ts.makeFromList(trainingSchemeFile[i]);
+       training_schemes.append(ts);
+   }
+
 }
 void database::addMatch(QDate date_, track track_, QList<team*> t, int type)
 {

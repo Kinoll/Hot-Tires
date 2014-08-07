@@ -14,6 +14,7 @@ class training_scheme
 {
 private:
     //
+    QString name;
     qint8 start_and_reflex_training;
     qint8 ride_and_steer_training;
     qint8 team_ride_training;
@@ -23,6 +24,7 @@ private:
     qint8 condition_and_strength_training;
 public:
     training_scheme();
+    void makeFromList(QStringList info);
 
 
 };

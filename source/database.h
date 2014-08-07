@@ -12,6 +12,8 @@
 #include "ind16.h"
 //#include "pgm.h"
 //#include "heat.h"
+#include "training_day.h"
+#include "training_scheme.h"
 
 class database
 {
@@ -33,6 +35,8 @@ public:
     QList<ind16> ind16s;
     QList<event_game> events;
     QVector<track> tracks;
+    QVector<training_day> training_days;
+    QVector<training_scheme> training_schemes;
     rider blank_rider;
     QDate date;
     int players_team_id;

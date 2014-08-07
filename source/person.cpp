@@ -53,6 +53,16 @@ void person::makeFromList(QStringList info)
     is_coach = info[37].toShort();
     is_manager = info[38].toShort();
     is_mechanic = info[39].toShort();
+
+    //training days
+    tr_day.append(info[40].toShort());
+    tr_day.append(info[41].toShort());
+    tr_day.append(info[42].toShort());
+    tr_day.append(info[43].toShort());
+    tr_day.append(info[44].toShort());
+    tr_day.append(info[45].toShort());
+    tr_day.append(info[46].toShort());
+
 }
 
 

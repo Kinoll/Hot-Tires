@@ -45,7 +45,7 @@ public:
 
     //training
     QVector<qint16> tr_day;
-    qint16 tr_today;
+    //qint16 tr_today;
     void perform_training();
 
 
