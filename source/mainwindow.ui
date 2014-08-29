@@ -88,7 +88,7 @@
      <widget class="QTabWidget" name="tab_Club">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>20</x>
         <y>0</y>
         <width>1001</width>
         <height>561</height>
@@ -111,28 +111,420 @@
        <attribute name="title">
         <string>Trening</string>
        </attribute>
-       <widget class="QComboBox" name="comboBox_riderToTrain">
+       <widget class="QGroupBox" name="group_riderTraining">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>10</y>
-          <width>121</width>
-          <height>22</height>
+          <x>40</x>
+          <y>30</y>
+          <width>231</width>
+          <height>221</height>
          </rect>
         </property>
+        <property name="title">
+         <string>Treningi zawodników:</string>
+        </property>
+        <widget class="QLabel" name="label_monday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Poniedziałek:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_tuesday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>90</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Wtorek:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_riderToTrain">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>91</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Wybierz zawodnika:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_riderToTrain">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>20</y>
+           <width>121</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_wednesday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>110</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Środa:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_thursday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>130</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Czwartek:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_friday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>150</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Piątek:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_saturday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Sobota:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_sunday">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>190</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Niedziela:</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_monday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>70</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_tuesday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>90</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_wednesday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>110</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_thursday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>130</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_friday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>150</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_saturday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>170</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_sunday">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>190</y>
+           <width>131</width>
+           <height>16</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbl_trainingDays">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Dni treningów:</string>
+         </property>
+        </widget>
        </widget>
-       <widget class="QLabel" name="label_riderToTrain">
+       <widget class="QGroupBox" name="groupBox_scheme">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>91</width>
-          <height>20</height>
+          <x>340</x>
+          <y>40</y>
+          <width>411</width>
+          <height>261</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Wybierz zawodnika:</string>
+        <property name="title">
+         <string>Edycja schematów treningowych:</string>
         </property>
+        <widget class="QComboBox" name="comboBox_selectScheme">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>30</y>
+           <width>69</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSlider" name="slide_startReflex">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>70</y>
+           <width>160</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_rideSteer">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>100</y>
+           <width>160</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_teamRide">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>130</y>
+           <width>160</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_trackExp">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>160</y>
+           <width>160</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_psyche">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>190</y>
+           <width>160</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QSlider" name="horizontalSlider_conditionStrength">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>220</y>
+           <width>160</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_startReflex">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Start i refleks:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_rideSteer">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>100</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Jazda i skręt:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_timeRide">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>130</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Jazda parą:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_trackExp">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>160</y>
+           <width>181</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Poznanie toru najbliższych zawodów:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_psyche">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>190</y>
+           <width>46</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Psychika:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_conditionStrength">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>220</y>
+           <width>101</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Siła i kondycja:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_selectScheme">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Wybierz schemat:</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_newScheme">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>30</y>
+           <width>101</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nowy schemat...</string>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_workers">
