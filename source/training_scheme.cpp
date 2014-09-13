@@ -5,6 +5,19 @@ training_scheme::training_scheme()
 {
 }
 
+training_scheme::training_scheme(QString lname)
+{
+
+    start_and_reflex_training=0;
+    ride_and_steer_training=0;
+    team_ride_training=0;
+    track_exp_training=0;
+    track_id=0;
+    qint8 psyche_training=0;
+    qint8 condition_and_strength_training=0;
+    name=lname;
+}
+
 void training_scheme::makeFromList(QStringList info)
 {
 
@@ -28,4 +41,11 @@ void training_scheme::makeFromList(QStringList info)
 
 
 
+}
+
+
+
+QString training_scheme::getName()
+{
+    return(name);
 }

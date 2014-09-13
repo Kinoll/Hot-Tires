@@ -7,6 +7,7 @@ database::database()
     is_home = true;
 
     players_team_id = 0; //To be changed
+
 }
 void database::load()
 {

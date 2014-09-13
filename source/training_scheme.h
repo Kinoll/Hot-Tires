@@ -23,9 +23,11 @@ private:
     qint8 psyche_training;
     qint8 condition_and_strength_training;
 public:
-    training_scheme();
-    void makeFromList(QStringList info);
 
+    training_scheme();
+    training_scheme(QString lname);
+    void makeFromList(QStringList info);
+    QString getName();
 
 };
 

@@ -80,6 +80,8 @@ public:
     QLabel *label_conditionStrength;
     QLabel *label_selectScheme;
     QPushButton *pushButton_newScheme;
+    QLabel *label_load;
+    QLabel *label_loadValue;
     QWidget *tab_workers;
     QWidget *tab_management;
     QWidget *tab_finances;
@@ -259,7 +261,7 @@ public:
         lbl_trainingDays->setGeometry(QRect(10, 50, 111, 16));
         groupBox_scheme = new QGroupBox(tab_training);
         groupBox_scheme->setObjectName(QStringLiteral("groupBox_scheme"));
-        groupBox_scheme->setGeometry(QRect(340, 40, 411, 261));
+        groupBox_scheme->setGeometry(QRect(340, 40, 411, 281));
         comboBox_selectScheme = new QComboBox(groupBox_scheme);
         comboBox_selectScheme->setObjectName(QStringLiteral("comboBox_selectScheme"));
         comboBox_selectScheme->setGeometry(QRect(110, 30, 69, 22));
@@ -311,6 +313,12 @@ public:
         pushButton_newScheme = new QPushButton(groupBox_scheme);
         pushButton_newScheme->setObjectName(QStringLiteral("pushButton_newScheme"));
         pushButton_newScheme->setGeometry(QRect(200, 30, 101, 23));
+        label_load = new QLabel(groupBox_scheme);
+        label_load->setObjectName(QStringLiteral("label_load"));
+        label_load->setGeometry(QRect(10, 260, 61, 16));
+        label_loadValue = new QLabel(groupBox_scheme);
+        label_loadValue->setObjectName(QStringLiteral("label_loadValue"));
+        label_loadValue->setGeometry(QRect(80, 260, 46, 13));
         tab_Club->addTab(tab_training, QString());
         tab_workers = new QWidget();
         tab_workers->setObjectName(QStringLiteral("tab_workers"));
@@ -594,6 +602,8 @@ public:
         label_conditionStrength->setText(QApplication::translate("MainWindow", "Si\305\202a i kondycja:", 0));
         label_selectScheme->setText(QApplication::translate("MainWindow", "Wybierz schemat:", 0));
         pushButton_newScheme->setText(QApplication::translate("MainWindow", "Nowy schemat...", 0));
+        label_load->setText(QApplication::translate("MainWindow", "Obci\304\205\305\274enie:", 0));
+        label_loadValue->setText(QApplication::translate("MainWindow", "0%", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_training), QApplication::translate("MainWindow", "Trening", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_workers), QApplication::translate("MainWindow", "Sztab", 0));
         tab_Club->setTabText(tab_Club->indexOf(tab_management), QApplication::translate("MainWindow", "Zarzad", 0));

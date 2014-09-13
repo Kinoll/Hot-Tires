@@ -40,10 +40,15 @@ MainWindow::MainWindow(QWidget *parent) :
         for (int k = 0; k < 3; k++)
             buttons_reserve[i][k]->setHidden(true);
 
+
+    //training manager init
+    trManager=new training_manager(ui);
+
 }
 
 MainWindow::~MainWindow()
 {
+    delete trManager;
     delete ui;
 }
 void MainWindow::fillDmp()
@@ -160,6 +165,8 @@ void MainWindow::on_but_new_clicked()
 
    //QString change = gamer.player.name+" "+gamer.player.surname;
    //ui->name_label->setText(change);
+    trManager->refreshForm();
+
 }
 
 void MainWindow::on_but_load_clicked()
@@ -167,6 +174,8 @@ void MainWindow::on_but_load_clicked()
     ui->tab_Manager->setEnabled(true);
     ui->tab_Mmain->setCurrentIndex(0);
     ui->tab_Manager->setCurrentIndex(0);
+    trManager->refreshForm();
+
 }
 
 void MainWindow::on_name_label_textChanged()
@@ -310,6 +319,9 @@ void MainWindow::on_but_continue_clicked()
     }
     else
         db.date = db.date.addDays(1);
+
+    trManager->refreshForm();
+
 }
 
 

@@ -53,7 +53,8 @@ SOURCES += main.cpp\
     heat_rider.cpp \
     training_day.cpp \
     training_scheme.cpp \
-    training.cpp
+    training.cpp \
+    training_manager.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -89,7 +90,8 @@ HEADERS  += mainwindow.h \
     heat_rider.h \
     training_day.h \
     training_scheme.h \
-    training.h
+    training.h \
+    training_manager.h
 
 FORMS    += mainwindow.ui \
     newgame.ui \

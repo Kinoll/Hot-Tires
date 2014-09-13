@@ -16,6 +16,7 @@
 //#include "event_game.h"
 #include <iostream>
 #include "heat_screen.h"
+#include "training_manager.h"
 using namespace std;
 
 namespace Ui {
@@ -88,6 +89,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    training_manager *trManager;
 };
 
 #endif // MAINWINDOW_H

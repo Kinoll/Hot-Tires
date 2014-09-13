@@ -20,7 +20,6 @@ private:
 
 
 
-
 public:
     training_day();
     void perform();
