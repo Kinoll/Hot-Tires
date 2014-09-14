@@ -17,7 +17,7 @@ private:
     qint16 rider_id;
     QString day_name;
     qint16 training_scheme;
-
+    qint16 coach;
 
 
 public:

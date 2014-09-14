@@ -63,6 +63,8 @@ void person::makeFromList(QStringList info)
     tr_day.append(info[45].toShort());
     tr_day.append(info[46].toShort());
 
+    team= info[40].toShort();
+
 }
 
 

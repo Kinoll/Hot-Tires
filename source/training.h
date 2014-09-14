@@ -6,8 +6,9 @@ class training
 private:
     int rider_id;
     int training_scheme;
+    int coach;
 public:
-    training(int rider_id, int training_scheme);
+    training(int rider_id, int training_scheme,int coach);
     void perform();
 };
 

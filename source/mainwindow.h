@@ -89,6 +89,10 @@ private slots:
 
 	void on_pushButton_newScheme_clicked();
 
+    void on_pushButton_del_clicked();
+
+    void on_comboBox_selectScheme_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     training_manager *trManager;

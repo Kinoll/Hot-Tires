@@ -69,6 +69,7 @@ public:
     qint8 is_manager;
     qint8 is_mechanic;
 
+    int team;
     person();
     void makeFromList(QStringList info);
 };

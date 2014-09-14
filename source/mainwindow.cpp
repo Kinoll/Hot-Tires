@@ -571,5 +571,20 @@ void MainWindow::on_pushButton_accept_nom_clicked()
 
 void MainWindow::on_pushButton_newScheme_clicked()
 {
-    trManager->new_scheme(QInputDialog::getText(this, QObject::tr("Podaj nazwê schematu"),QObject::tr("Nazwa schematu:"), QLineEdit::Normal,QObject::tr("")));
+    trManager->new_scheme(QInputDialog::getText(this, QObject::tr("Podaj nazwï¿½ schematu"),QObject::tr("Nazwa schematu:"), QLineEdit::Normal,QObject::tr("")));
+}
+
+
+void MainWindow::on_pushButton_del_clicked()
+{
+ //   QString name=ui->comboBox_selectScheme->itemData(ui->comboBox_selectScheme->currentIndex()).toString();
+    QString name=ui->comboBox_selectScheme->currentText();
+
+    trManager->delete_scheme(name);
+
+}
+
+void MainWindow::on_comboBox_selectScheme_currentIndexChanged(const QString &arg1)
+{
+    trManager->load_scheme();
 }

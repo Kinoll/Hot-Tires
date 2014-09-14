@@ -15,6 +15,8 @@ class training_scheme
 private:
     //
     QString name;
+public:
+    //todo: make private and write access methods
     qint8 start_and_reflex_training;
     qint8 ride_and_steer_training;
     qint8 team_ride_training;
@@ -22,7 +24,6 @@ private:
     qint16 track_id;
     qint8 psyche_training;
     qint8 condition_and_strength_training;
-public:
 
     training_scheme();
     training_scheme(QString lname);
