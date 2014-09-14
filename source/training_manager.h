@@ -4,18 +4,16 @@
 #include "ui_mainwindow.h"
 //#include "mainwindow.h"
 
-class training_manager :public QWidget
+class training_manager
 {
 public:
     training_manager(Ui::MainWindow *lui);
     void refreshForm();
-private slots:
-    void on_pushButton_newScheme_clicked();
+	void new_scheme(QString scheme_name);
 
 private:
     void get_names();
     void get_riderTraining();
-    void new_scheme();
 
     Ui::MainWindow *ui;
 

@@ -49,10 +49,9 @@ void training_manager::get_riderTraining()
     }
 }
 
-void training_manager::new_scheme()
+void training_manager::new_scheme(QString scheme_name)
 {
-    bool ok;
-    QString schemeName = QInputDialog::getText(this, QObject::tr("Podaj nazwę schematu"),QObject::tr("Nazwa schematu:"), QLineEdit::Normal,QObject::tr(""), &ok);
+    QString schemeName = scheme_name;
     db.training_schemes.append(*(new training_scheme(schemeName)));
     ui->comboBox_selectScheme->addItem(schemeName);
     ui->slide_startReflex->setValue(50);
@@ -75,7 +74,3 @@ void training_manager::refreshForm()
 
 }
 
-void training_manager::on_pushButton_newScheme_clicked()
-{
-    new_scheme();
-}

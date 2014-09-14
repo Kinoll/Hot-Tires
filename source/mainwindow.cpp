@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QProcess>
 #include "csv.h"
+#include <QInputDialog>
 
 using namespace std;
 
@@ -566,4 +567,9 @@ void MainWindow::on_pushButton_accept_nom_clicked()
         db.dmps[0].table_of_heats.heats[14].start_positions[pos_15[1]].rider_number = r_nums[0];
         ui->pushButton_accept_nom->setDisabled(true);
     }
+}
+
+void MainWindow::on_pushButton_newScheme_clicked()
+{
+    trManager->new_scheme(QInputDialog::getText(this, QObject::tr("Podaj nazwê schematu"),QObject::tr("Nazwa schematu:"), QLineEdit::Normal,QObject::tr("")));
 }

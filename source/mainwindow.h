@@ -87,6 +87,8 @@ private slots:
 
     void on_pushButton_accept_nom_clicked();
 
+	void on_pushButton_newScheme_clicked();
+
 private:
     Ui::MainWindow *ui;
     training_manager *trManager;
