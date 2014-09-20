@@ -12,11 +12,25 @@ public:
 	void new_scheme(QString scheme_name);
     void delete_scheme(QString name);
     void load_scheme();
+    void save_scheme();
+    void load_training();
+    void save_training();
+
+
+
+
 
 private:
     void get_names();
-    void get_riderTraining();
+    void get_riderTrainingTypes();
     void get_schemes();
+    int getSelectedRiderNumber();
+    void get_trainers();
+
+    int getPersonByFullName(QString fullName);
+    int getSchemeIdByName(QString name);
+    int getTrainingDayId(int rider, int day);
+
 
     Ui::MainWindow *ui;
 

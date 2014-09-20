@@ -72,6 +72,9 @@ public:
     int team;
     person();
     void makeFromList(QStringList info);
+    QString getName();
+    void setName(QString name);
+
 };
 
 #endif // PERSON_H

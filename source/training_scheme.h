@@ -29,6 +29,7 @@ public:
     training_scheme(QString lname);
     void makeFromList(QStringList info);
     QString getName();
+    void setName(QString name);
 
 };
 

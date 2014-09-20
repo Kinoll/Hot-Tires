@@ -49,3 +49,8 @@ QString training_scheme::getName()
 {
     return(name);
 }
+
+void training_scheme::setName(QString name)
+{
+    this->name=name;
+}

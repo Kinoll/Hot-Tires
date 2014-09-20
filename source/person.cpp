@@ -73,3 +73,18 @@ void person::perform_training()
     //
 //   training_days[this->tr_day[today]].perform();
 }
+
+QString person::getName()
+{
+    return(name+" "+surname);
+}
+
+void person::setName(QString name)
+{
+    QStringList ls=name.split(" ");
+    this->name=ls[0];
+    this->surname=ls[1];
+    if (ls.length()>2)
+       for (int c=2; c<=ls.length()-1; c++)
+           this->surname=this->surname+" "+ls[c];
+}

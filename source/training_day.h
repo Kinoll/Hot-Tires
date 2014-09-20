@@ -13,17 +13,21 @@
 
 class training_day
 {
-private:
+public:
     qint16 rider_id;
     QString day_name;
     qint16 training_scheme;
     qint16 coach;
+//todo implement getters and setters
 
 
 public:
     training_day();
     void perform();
     void makeFromList(QStringList info);
+    static int nameToInt(QString name);
+    static QString intToName(int day);
+
 };
 
 #endif // TRAININGDAYINCLUB_H

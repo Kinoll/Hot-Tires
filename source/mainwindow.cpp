@@ -588,3 +588,128 @@ void MainWindow::on_comboBox_selectScheme_currentIndexChanged(const QString &arg
 {
     trManager->load_scheme();
 }
+
+
+void MainWindow::on_slide_startReflex_sliderMoved(int position)
+{
+    trManager->save_scheme();
+}
+
+void MainWindow::on_horizontalSlider_rideSteer_sliderMoved(int position)
+{
+    trManager->save_scheme();
+}
+
+void MainWindow::on_horizontalSlider_teamRide_sliderMoved(int position)
+{
+    trManager->save_scheme();
+}
+void MainWindow::on_horizontalSlider_trackExp_sliderMoved(int position)
+{
+    trManager->save_scheme();
+
+}
+
+void MainWindow::on_horizontalSlider_psyche_sliderMoved(int position)
+{
+    trManager->save_scheme();
+
+}
+
+void MainWindow::on_horizontalSlider_conditionStrength_sliderMoved(int position)
+{
+    trManager->save_scheme();
+
+}
+
+void MainWindow::on_comboBox_riderToTrain_currentIndexChanged(int index)
+{
+//    trManager->load_training();
+}
+
+
+void MainWindow::on_comboBox_monday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+}
+
+void MainWindow::on_comboBox_tuesday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_wednesday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_thursday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_friday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_saturday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_sunday_currentIndexChanged(int index)
+{
+   // trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachMonday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachTuesday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachWednesday_currentIndexChanged(int index)
+{
+    //trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachThursday_currentIndexChanged(int index)
+{
+  //  trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachFriday_currentIndexChanged(int index)
+{
+//    trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachSaturday_currentIndexChanged(int index)
+{
+  //  trManager->save_training();
+
+}
+
+void MainWindow::on_comboBox_coachSunday_currentIndexChanged(int index)
+{
+//    trManager->save_training();
+
+}
+
+
+
