@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'newgame.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -9,21 +9,17 @@
 #ifndef UI_NEWGAME_H
 #define UI_NEWGAME_H
 
-#include <QDate>
-#include <QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QCalendarWidget>
-#include <QComboBox>
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QHeaderView>
-#include <QLineEdit>
-#include "setcurrenttext.h"
-#if QT_VERSION < QT_VERSION_CHECK(5,3,0)
-#define QStringLiteral QLatin1String
-#endif
+#include <QtCore/QDate>
+#include <QtCore/QVariant>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QCalendarWidget>
+#include <QtGui/QComboBox>
+#include <QtGui/QDialog>
+#include <QtGui/QDialogButtonBox>
+#include <QtGui/QHeaderView>
+#include <QtGui/QLineEdit>
 
 QT_BEGIN_NAMESPACE
 
@@ -39,26 +35,26 @@ public:
     void setupUi(QDialog *newgame)
     {
         if (newgame->objectName().isEmpty())
-            newgame->setObjectName(QStringLiteral("newgame"));
+            newgame->setObjectName(QString::fromUtf8("newgame"));
         newgame->resize(563, 320);
         buttonBox = new QDialogButtonBox(newgame);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setGeometry(QRect(10, 270, 221, 41));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         name = new QLineEdit(newgame);
-        name->setObjectName(QStringLiteral("name"));
+        name->setObjectName(QString::fromUtf8("name"));
         name->setGeometry(QRect(50, 50, 161, 20));
         surname = new QLineEdit(newgame);
-        surname->setObjectName(QStringLiteral("surname"));
+        surname->setObjectName(QString::fromUtf8("surname"));
         surname->setGeometry(QRect(50, 80, 161, 20));
         birth = new QCalendarWidget(newgame);
-        birth->setObjectName(QStringLiteral("birth"));
+        birth->setObjectName(QString::fromUtf8("birth"));
         birth->setGeometry(QRect(320, 50, 216, 141));
         birth->setMinimumDate(QDate(1930, 12, 31));
         birth->setMaximumDate(QDate(2005, 12, 31));
         country = new QComboBox(newgame);
-        country->setObjectName(QStringLiteral("country"));
+        country->setObjectName(QString::fromUtf8("country"));
         country->setGeometry(QRect(50, 110, 161, 22));
         country->setEditable(true);
         country->setMaxCount(2147483646);
@@ -75,14 +71,14 @@ public:
 
     void retranslateUi(QDialog *newgame)
     {
-        newgame->setWindowTitle(QApplication::translate("newgame", "Dialog", 0));
-        name->setText(QApplication::translate("newgame", "Name", 0));
-        surname->setText(QApplication::translate("newgame", "Surname", 0));
+        newgame->setWindowTitle(QApplication::translate("newgame", "Dialog", 0, QApplication::UnicodeUTF8));
+        name->setText(QApplication::translate("newgame", "Name", 0, QApplication::UnicodeUTF8));
+        surname->setText(QApplication::translate("newgame", "Surname", 0, QApplication::UnicodeUTF8));
         country->clear();
         country->insertItems(0, QStringList()
-         << QApplication::translate("newgame", "Cipao", 0)
+         << QApplication::translate("newgame", "Cipao", 0, QApplication::UnicodeUTF8)
         );
-        setCurrentText(country,QApplication::translate("newgame", "Cipao", 0));
+        country->setCurrentText(QApplication::translate("newgame", "Cipao", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

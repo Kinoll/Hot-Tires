@@ -8,7 +8,7 @@
 #include <QInputDialog>
 #include <QLabel>
 #include <QVBoxLayout>
-
+#include "setcurrenttext.h"
 
 training_manager::training_manager(Ui::MainWindow *lui)
 {
@@ -36,7 +36,7 @@ void training_manager::get_riderTrainingTypes()
     ui->comboBox_thursday->clear();
     ui->comboBox_tuesday->clear();
     ui->comboBox_wednesday->clear();
-    for (int c=0; c<=db.training_schemes.length()-1; c++)
+    for (int c=0; c<=db.training_schemes.size()-1; c++)
     {
         ui->comboBox_friday->addItem(db.training_schemes[c].getName());
         ui->comboBox_monday->addItem(db.training_schemes[c].getName());
@@ -88,7 +88,7 @@ int training_manager::getSelectedRiderNumber()
 void training_manager::get_schemes()
 {
     ui->comboBox_selectScheme->clear();
-    for (int c=0; c<=db.training_schemes.length()-1; c++)
+    for (int c=0; c<=db.training_schemes.size()-1; c++)
     {
         ui->comboBox_selectScheme->addItem(db.training_schemes[c].getName());
     }
@@ -124,7 +124,7 @@ void training_manager::refreshForm()
 void training_manager::save_scheme()
 {
     QString name=ui->comboBox_selectScheme->currentText();
-    for (int c=0; c<=db.training_schemes.length()-1; c++)
+    for (int c=0; c<=db.training_schemes.size()-1; c++)
     {
         if (db.training_schemes[c].getName()==name)
         {
@@ -144,7 +144,7 @@ void training_manager::load_scheme()
 {
 //    QString name=ui->comboBox_selectScheme->itemData(ui->comboBox_selectScheme->currentIndex()).toString();
     QString name=ui->comboBox_selectScheme->currentText();
-    for (int c=0; c<=db.training_schemes.length()-1; c++)
+    for (int c=0; c<=db.training_schemes.size()-1; c++)
     {
         if (db.training_schemes[c].getName()==name)
         {
@@ -164,11 +164,11 @@ void training_manager::delete_scheme(QString name)
 {
 
    // QString name=ui->comboBox_selectScheme->itemData(ui->comboBox_selectScheme->currentIndex()).toString();
-    for (int c=0; c<=db.training_schemes.length()-1; c++)
+    for (int c=0; c<=db.training_schemes.size()-1; c++)
     {
         if (db.training_schemes[c].getName()==name)
         {
-            db.training_schemes.removeAt(c);
+            db.training_schemes.remove(c);
             break;
         }
      }
@@ -197,7 +197,7 @@ int training_manager::getPersonByFullName(QString fullName)
 int training_manager::getSchemeIdByName(QString name)
 {
     int result=-1;
-    for (int c=0; c<=db.training_schemes.length()-1; c++)
+    for (int c=0; c<=db.training_schemes.size()-1; c++)
     {
         if (db.training_schemes[c].getName()==name)
         {
@@ -211,7 +211,7 @@ int training_manager::getSchemeIdByName(QString name)
 int training_manager::getTrainingDayId(int rider, int day)
 {
     int result=-1;
-    for (int c=0; c<=db.training_days.length()-1; c++)
+    for (int c=0; c<=db.training_days.size()-1; c++)
     {
         if (db.training_days[c].rider_id==rider && db.training_days[c].day_name==db.training_days[c].intToName(day))
         {
@@ -236,21 +236,21 @@ void training_manager::load_training()
         scheme[c]=trd->training_scheme;
 
     }
-    ui->comboBox_monday->setCurrentText(db.training_schemes[scheme[0]].getName());
-    ui->comboBox_tuesday->setCurrentText(db.training_schemes[scheme[1]].getName());
-    ui->comboBox_wednesday->setCurrentText(db.training_schemes[scheme[2]].getName());
-    ui->comboBox_thursday->setCurrentText(db.training_schemes[scheme[3]].getName());
-    ui->comboBox_friday->setCurrentText(db.training_schemes[scheme[4]].getName());
-    ui->comboBox_saturday->setCurrentText(db.training_schemes[scheme[5]].getName());
-    ui->comboBox_sunday->setCurrentText(db.training_schemes[scheme[6]].getName());
+    setCurrentText(ui->comboBox_monday,db.training_schemes[scheme[0]].getName());
+    setCurrentText(ui->comboBox_tuesday,db.training_schemes[scheme[1]].getName());
+    setCurrentText(ui->comboBox_wednesday,db.training_schemes[scheme[2]].getName());
+    setCurrentText(ui->comboBox_thursday,db.training_schemes[scheme[3]].getName());
+    setCurrentText(ui->comboBox_friday,db.training_schemes[scheme[4]].getName());
+    setCurrentText(ui->comboBox_saturday,db.training_schemes[scheme[5]].getName());
+    setCurrentText(ui->comboBox_sunday,db.training_schemes[scheme[6]].getName());
 
-    ui->comboBox_coachMonday->setCurrentText(db.riders[coach[0]].getName());
-    ui->comboBox_coachTuesday->setCurrentText(db.riders[coach[1]].getName());
-    ui->comboBox_coachWednesday->setCurrentText(db.riders[coach[2]].getName());
-    ui->comboBox_coachThursday->setCurrentText(db.riders[coach[3]].getName());
-    ui->comboBox_coachFriday->setCurrentText(db.riders[coach[4]].getName());
-    ui->comboBox_coachSaturday->setCurrentText(db.riders[coach[5]].getName());
-    ui->comboBox_coachSunday->setCurrentText(db.riders[coach[6]].getName());
+    setCurrentText(ui->comboBox_coachMonday,db.riders[coach[0]].getName());
+    setCurrentText(ui->comboBox_coachTuesday,db.riders[coach[1]].getName());
+    setCurrentText(ui->comboBox_coachWednesday,db.riders[coach[2]].getName());
+    setCurrentText(ui->comboBox_coachThursday,db.riders[coach[3]].getName());
+    setCurrentText(ui->comboBox_coachFriday,db.riders[coach[4]].getName());
+    setCurrentText(ui->comboBox_coachSaturday,db.riders[coach[5]].getName());
+    setCurrentText(ui->comboBox_coachSunday,db.riders[coach[6]].getName());
 
 
 }

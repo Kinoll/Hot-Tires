@@ -7,7 +7,7 @@
 QT       += core gui
 
 
-
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
 #CONFIG   += c++11
 #QMAKE_CXXFLAGS += -stdlib=libc++
 #QMAKE_CXXFLAGS += -mmacosx-version-min=10.7
@@ -54,7 +54,8 @@ SOURCES += main.cpp\
     training_day.cpp \
     training_scheme.cpp \
     training.cpp \
-    training_manager.cpp
+    training_manager.cpp \
+    setcurrenttext.cpp
 
 HEADERS  += mainwindow.h \
 	draw_run.h \
@@ -91,7 +92,9 @@ HEADERS  += mainwindow.h \
     training_day.h \
     training_scheme.h \
     training.h \
-    training_manager.h
+    training_manager.h \
+    setcurrenttext.h \
+    qstringliteral.h
 
 FORMS    += mainwindow.ui \
     newgame.ui \

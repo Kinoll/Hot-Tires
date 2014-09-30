@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'heat_screen.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -9,15 +9,13 @@
 #ifndef UI_HEAT_SCREEN_H
 #define UI_HEAT_SCREEN_H
 
-#include <QVariant>
-#include <QAction>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QGraphicsView>
-#include <QHeaderView>
-#include <QWidget>
-#include "qstringliteral.h"
-
+#include <QtCore/QVariant>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QGraphicsView>
+#include <QtGui/QHeaderView>
+#include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -29,10 +27,10 @@ public:
     void setupUi(QWidget *heat_screen)
     {
         if (heat_screen->objectName().isEmpty())
-            heat_screen->setObjectName(QStringLiteral("heat_screen"));
+            heat_screen->setObjectName(QString::fromUtf8("heat_screen"));
         heat_screen->resize(800, 600);
         heatscreen = new QGraphicsView(heat_screen);
-        heatscreen->setObjectName(QStringLiteral("heatscreen"));
+        heatscreen->setObjectName(QString::fromUtf8("heatscreen"));
         heatscreen->setGeometry(QRect(0, 0, 800, 600));
 
         retranslateUi(heat_screen);
@@ -42,7 +40,7 @@ public:
 
     void retranslateUi(QWidget *heat_screen)
     {
-        heat_screen->setWindowTitle(QApplication::translate("heat_screen", "Form", 0));
+        heat_screen->setWindowTitle(QApplication::translate("heat_screen", "Form", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
